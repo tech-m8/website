@@ -18,15 +18,15 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-blue-100">
             <li>
               <span className="font-medium text-white">Email : </span>
-              Lorem ipsum dolor
+              <a href="mailto:masnun@tech-m8.solutions" className="hover:text-white transition-colors">masnun@tech-m8.solutions</a>
             </li>
             <li>
               <span className="font-medium text-white">Phone : </span>
-              Lorem ipsum dolor
+              <a href="tel:+8801711960803" className="hover:text-white transition-colors">+8801711 960803</a>
             </li>
             <li>
               <span className="font-medium text-white">Address : </span>
-              Lorem ipsum dolor
+              84, Abu Ahmed Road, Gollamari, Khulna - 9100
             </li>
           </ul>
         </div>

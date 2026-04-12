@@ -108,7 +108,7 @@ export default function ServicePage() {
       </section>
 
       {/* Services Grid */}
-      <section className="relative pb-20 md:pb-28">
+      <section className="relative pt-10 pb-20 md:pt-14 md:pb-28">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (

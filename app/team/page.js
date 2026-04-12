@@ -34,7 +34,7 @@ export default function TeamPage() {
       </section>
 
       {/* Team Grid */}
-      <section className="relative pb-20 md:pb-28">
+      <section className="relative pt-10 pb-20 md:pt-14 md:pb-28">
         <div className="max-w-6xl mx-auto px-6">
           {/* Founder - full width card */}
           <div className="mb-6">

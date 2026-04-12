@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return members.map((m) => ({ slug: m.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const member = members.find((m) => m.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const member = members.find((m) => m.slug === slug);
   if (!member) return {};
   return {
     title: `${member.name} | TechM8 Team`,
@@ -15,8 +16,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function MemberProfile({ params }) {
-  const member = members.find((m) => m.slug === params.slug);
+export default async function MemberProfile({ params }) {
+  const { slug } = await params;
+  const member = members.find((m) => m.slug === slug);
   if (!member) notFound();
 
   const paragraphs = member.bio.split('\n').filter(Boolean);

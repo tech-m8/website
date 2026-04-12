@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export default function Footer() {
   return (
     <footer className="relative bg-slate-900 overflow-hidden">
@@ -24,30 +22,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Right grid */}
-          <div className="flex-1 grid grid-cols-2 gap-10">
-            {/* Pages */}
-            <div>
-              <h4 className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-5">Pages</h4>
-              <ul className="space-y-3">
-                {[
-                  { label: 'Home', href: '/' },
-                  { label: 'Services', href: '/service' },
-                  { label: 'Products', href: '/products' },
-                  { label: 'Team', href: '/team' },
-                  { label: 'Contact', href: '/contact' },
-                ].map(({ label, href }) => (
-                  <li key={label}>
-                    <Link href={href} className="text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2 group">
-                      <span className="w-1 h-1 rounded-full bg-blue-500/50 group-hover:bg-blue-400 transition-colors" />
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
+          {/* Right — Contact */}
+          <div className="flex-1 flex justify-start lg:justify-end">
             <div>
               <h4 className="text-xs font-semibold text-blue-400 uppercase tracking-widest mb-5">Contact</h4>
               <ul className="space-y-4">
@@ -87,6 +63,7 @@ export default function Footer() {
           </div>
 
         </div>
+
 
         {/* Bottom */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-500 text-xs">

@@ -17,31 +17,32 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-sm grid grid-cols-2 gap-0.5 p-1">
-            <div className="bg-white rounded-sm"></div>
-            <div className="bg-blue-300 rounded-sm"></div>
-            <div className="bg-blue-300 rounded-sm"></div>
-            <div className="bg-white rounded-sm"></div>
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg grid grid-cols-2 gap-0.5 p-1.5">
+            <div className="bg-white/90 rounded-sm" />
+            <div className="bg-white/40 rounded-sm" />
+            <div className="bg-white/40 rounded-sm" />
+            <div className="bg-white/90 rounded-sm" />
           </div>
-          <span className="font-bold text-gray-800 text-lg">TechM8</span>
+          <span className="font-bold text-white text-lg">TechM8</span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors relative pb-1 ${
+                className={`text-sm font-medium px-4 py-2 rounded-lg transition-all ${
                   isActive
-                    ? 'text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? 'text-white bg-white/10'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -52,7 +53,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-600"
+          className="md:hidden text-gray-400 hover:text-white transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -68,17 +69,17 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white">
+        <div className="md:hidden border-t border-white/10 bg-slate-900/95 backdrop-blur-md">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block px-6 py-3 text-sm font-medium transition-colors ${
+                className={`block px-6 py-3.5 text-sm font-medium transition-all ${
                   isActive
-                    ? 'text-blue-600 bg-blue-50 border-l-2 border-blue-600'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'text-white bg-white/10 border-l-2 border-blue-400'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
                 onClick={() => setMenuOpen(false)}
               >

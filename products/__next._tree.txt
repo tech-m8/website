@@ -1,2 +1,8 @@
-:HL["/_next/static/chunks/0mrhii1kaiifh.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"4kkRSlarrKNWYGrxmXBsu"}
+:HL["/_next/static/chunks/0a.sepx4rqroj.css","style"]
+:HL["/logo/gadget-and-gear.png","image"]
+:HL["/logo/creative-institute.png","image"]
+:HL["/logo/pathao.png","image"]
+:HL["/logo/kfc.png","image"]
+:HL["/logo/10-minute-school.png","image"]
+:HL["/logo/meena-sweet.png","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"FjKT5Ml89BRUZBQu7_7uh"}

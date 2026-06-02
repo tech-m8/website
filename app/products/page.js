@@ -13,6 +13,13 @@ const products = [
     desc: 'Notification mirroring, clipboard sync, and more — all over your local network. No cloud, no account.',
     badge: 'Android + macOS',
   },
+  {
+    slug: 'borderm8',
+    name: 'BorderM8',
+    tagline: 'Batch white borders for your photos.',
+    desc: 'Pad photos to a clean white square, add a caption with your camera details, and export square JPEGs — all on-device.',
+    badge: 'Android',
+  },
 ];
 
 export default function ProductsPage() {

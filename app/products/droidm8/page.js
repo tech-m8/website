@@ -109,7 +109,7 @@ const downloads = [
   {
     platform: 'macOS',
     name: 'DroidM8 for Mac',
-    desc: 'Menu-bar companion for macOS 15+. Apple Silicon and Intel. Ships as a .dmg with a double-click installer — see install notes below before launching.',
+    desc: 'Menu-bar companion for macOS 15+. Apple Silicon and Intel. Ships as a .dmg — see install notes below before launching.',
     href: '/downloads/DroidM8-mac.dmg',
     filename: 'DroidM8-mac.dmg',
     icon: (
@@ -206,14 +206,14 @@ export default function DroidM8Page() {
                 <p className="text-red-100/90 text-sm leading-relaxed mb-3">
                   The Mac app is <strong>not signed with an Apple Developer ID</strong>, so macOS Gatekeeper will block it on first launch with a “Droid M8 Not Opened — Apple could not verify…” warning. To install:
                 </p>
-                <ol className="list-decimal list-inside text-red-100/90 text-sm leading-relaxed space-y-1 mb-3">
-                  <li>Open the downloaded <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">DroidM8-mac.dmg</code>.</li>
-                  <li>Inside the disk image, <strong>right-click</strong> <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">Install Droid M8.command</code> and choose <strong>Open</strong>, then click <strong>Open</strong> in the warning dialog.</li>
-                  <li>The installer copies Droid M8 to <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">/Applications</code>, removes the quarantine flag, and launches the app.</li>
+                <ol className="list-decimal list-inside text-red-100/90 text-sm leading-relaxed space-y-2 mb-3">
+                  <li>Open the downloaded <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">DroidM8-mac.dmg</code> and drag <strong>Droid M8.app</strong> onto the <strong>Applications</strong> shortcut inside the disk image.</li>
+                  <li>
+                    Open <strong>Terminal</strong> (Applications → Utilities, or Spotlight → “Terminal”) and paste this command, then press Return. This removes the quarantine flag macOS attaches to downloaded apps:
+                    <pre className="mt-2 rounded-lg bg-black/40 border border-red-500/30 p-3 overflow-x-auto text-xs text-red-100"><code>xattr -dr com.apple.quarantine &quot;/Applications/Droid M8.app&quot;</code></pre>
+                  </li>
+                  <li>Launch <strong>Droid M8</strong> from <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">/Applications</code> or Spotlight. It should now open without the Gatekeeper warning.</li>
                 </ol>
-                <p className="text-red-100/80 text-xs leading-relaxed">
-                  Already have an older copy in <code className="px-1 py-0.5 rounded bg-red-500/20 text-red-100">/Applications</code>? Run <code className="px-1 py-0.5 rounded bg-red-500/20 text-red-100">xattr -dr com.apple.quarantine &quot;/Applications/Droid M8.app&quot;</code> in Terminal to unblock it.
-                </p>
                 <p className="text-red-100/70 text-xs leading-relaxed mt-3">
                   Verify the download (optional): <a href="/downloads/DroidM8-mac.dmg.sha256" className="underline hover:text-red-100">SHA-256 checksum</a>.
                 </p>

@@ -137,11 +137,11 @@ export default function Home() {
               Since 2017
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-              The Best{' '}
+              The{' '}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 Software Agency
               </span>{' '}
-              In Town
+              You Need
             </h2>
             <p className="text-gray-400 leading-relaxed">
               Since 2017, TechM8 has helped businesses transform ideas into successful digital experiences. Our goal is simple: build digital products that are beautiful, easy to use, and designed to help your business succeed.

@@ -21,7 +21,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg grid grid-cols-2 gap-0.5 p-1.5">
+          <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg grid grid-cols-2 gap-0.5 p-1.5">
             <div className="bg-white/90 rounded-sm" />
             <div className="bg-white/40 rounded-sm" />
             <div className="bg-white/40 rounded-sm" />
@@ -77,7 +77,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`block px-6 py-3.5 text-sm font-medium transition-all ${
                   isActive
-                    ? 'text-white bg-white/10 border-l-2 border-blue-400'
+                    ? 'text-white bg-white/10 border-l-2 border-violet-400'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
                 onClick={() => setMenuOpen(false)}

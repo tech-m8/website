@@ -1,8 +1,9 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
   title: 'DroidM8 — Bridge Android & Mac | TechM8',
-  description: 'DroidM8 mirrors Android notifications and syncs clipboard with macOS over your local network. Download the APK and Mac app.',
+  description: 'DroidM8 mirrors Android notifications and syncs clipboard with macOS over your local network. Setup walkthrough, screenshots, and downloads for both apps.',
 };
 
 const features = [
@@ -21,6 +22,74 @@ const features = [
   {
     title: 'Rules & suppression',
     desc: 'Per-app blacklists, suppression rules, and history — keep noisy apps out of your flow.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Install both apps',
+    body: 'Grab the APK on your Android phone and the Mac app on macOS. The Android app needs Android 9+. The Mac app needs macOS 15+ and runs from the menu bar.',
+    images: [],
+    cta: { href: '#downloads', label: 'Jump to downloads' },
+  },
+  {
+    title: 'Open Droid M8 on your Mac',
+    body: 'First launch opens a window with three tabs. Go to Devices — you\'ll see a 6-digit pairing PIN. Keep this window open; the phone needs that number next.',
+    images: [
+      { src: '/screenshots/mac-04-devices.png', alt: 'Droid M8 Mac app Devices tab showing pairing PIN', w: 760, h: 802 },
+    ],
+  },
+  {
+    title: 'Find the app from your menu bar',
+    body: 'Droid M8 lives in the menu bar. Click the icon any time to reopen the window, send the clipboard, or jump to recent items. The pairing PIN also shows under Clipboard in the main menu.',
+    images: [
+      { src: '/screenshots/mac-05-menu-pin.png', alt: 'Droid M8 menu bar dropdown showing pairing PIN and quick actions', w: 600, h: 500 },
+    ],
+  },
+  {
+    title: 'Pair from your phone',
+    body: 'Open Droid M8 on your phone, tap Settings (bottom-right), then the Devices tab. Type in the PIN from your Mac. Status flips to Connected once the two apps agree on the PIN.',
+    images: [
+      { src: '/screenshots/android-03-settings.png', alt: 'Droid M8 Android Settings showing connected status', w: 600, h: 1300 },
+    ],
+  },
+  {
+    title: 'Grant Android permissions',
+    body: 'Tap Notifications in the bottom nav, then the Settings sub-tab, then the Permissions chip. Tap each row — Read Notifications, Send Notification, DND policy access — and approve in Android system settings.',
+    images: [
+      { src: '/screenshots/android-08-permissions-tab.png', alt: 'Droid M8 Android Permissions screen', w: 600, h: 1300 },
+    ],
+  },
+  {
+    title: 'Grant Full Disk Access on the Mac',
+    body: 'For Mac → Phone notification mirroring, the Mac app needs Full Disk Access (it reads macOS\'s notification database). Open the Notifications tab on the Mac → click "Open Full Disk Access settings" → toggle Droid M8 on.',
+    images: [
+      { src: '/screenshots/mac-03-notifications.png', alt: 'Droid M8 Mac Notifications tab with Full Disk Access prompt', w: 760, h: 802 },
+    ],
+  },
+  {
+    title: 'You\'re paired — copy & paste across devices',
+    body: 'Copy text on either device — it shows up on the other within a second, end-to-end encrypted with your PIN. The Clipboard tab on either side keeps a history you can re-copy or resend.',
+    images: [
+      { src: '/screenshots/android-01-syncing-clipboard.png', alt: 'Droid M8 Android Clipboard tab', w: 600, h: 1300 },
+      { src: '/screenshots/mac-02-clipboard.png', alt: 'Droid M8 Mac Clipboard tab', w: 760, h: 802 },
+    ],
+  },
+  {
+    title: 'Bonus: DND-bypass rules',
+    body: 'Add a rule under Notifications → DND Bypass to make specific apps + keywords re-alert your phone even when Do Not Disturb is on. Pick the app, add keywords, pick a sound.',
+    images: [
+      { src: '/screenshots/android-05-rules.png', alt: 'Droid M8 Android DND Bypass rules', w: 600, h: 1300 },
+      { src: '/screenshots/android-09-rule-editor.png', alt: 'Droid M8 Android rule editor', w: 600, h: 1300 },
+    ],
+  },
+  {
+    title: 'Bonus: suppress noisy apps + back up rules',
+    body: 'Suppress quietly cancels notifications from chosen apps and logs them to history. Backup writes your rules to a JSON file on Google Drive so reinstalling doesn\'t wipe them.',
+    images: [
+      { src: '/screenshots/android-06-suppress.png', alt: 'Droid M8 Android Suppress tab', w: 600, h: 1300 },
+      { src: '/screenshots/android-04-backup.png', alt: 'Droid M8 Android Backup tab', w: 600, h: 1300 },
+    ],
   },
 ];
 
@@ -81,12 +150,20 @@ export default function DroidM8Page() {
           <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
             Bridge your Android phone with your Mac. Notification mirroring, clipboard sync, and more — all over your local network. No cloud, no account.
           </p>
-          <a
-            href="#downloads"
-            className="inline-block bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
-          >
-            Get DroidM8
-          </a>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <a
+              href="#downloads"
+              className="inline-block bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
+            >
+              Get DroidM8
+            </a>
+            <a
+              href="#tutorial"
+              className="inline-block bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 px-8 py-3 rounded-lg text-sm font-semibold transition-all"
+            >
+              Setup guide
+            </a>
+          </div>
         </div>
       </section>
 
@@ -108,7 +185,7 @@ export default function DroidM8Page() {
       </section>
 
       {/* Downloads */}
-      <section id="downloads" className="relative pb-20 md:pb-28 scroll-mt-24">
+      <section id="downloads" className="relative pb-20 md:pb-24 scroll-mt-24">
         <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2" />
         <div className="relative max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
@@ -143,6 +220,74 @@ export default function DroidM8Page() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Tutorial */}
+      <section id="tutorial" className="relative pb-20 md:pb-28 scroll-mt-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Setup <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">walkthrough</span>
+            </h2>
+            <p className="text-gray-400 text-sm">Pair the two apps in a few minutes. Screenshots from the real app.</p>
+          </div>
+          <ol className="space-y-12">
+            {steps.map((step, i) => (
+              <li
+                key={step.title}
+                className={`grid grid-cols-1 md:grid-cols-12 gap-8 items-center ${
+                  i % 2 === 1 ? 'md:[&>div:first-child]:order-2' : ''
+                }`}
+              >
+                <div className="md:col-span-5">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-violet-500/25">
+                      {i + 1}
+                    </span>
+                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed">{step.body}</p>
+                  {step.cta && (
+                    <a
+                      href={step.cta.href}
+                      className="inline-flex items-center gap-1 mt-4 text-violet-300 hover:text-violet-200 text-sm font-medium"
+                    >
+                      {step.cta.label}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+                <div className="md:col-span-7">
+                  {step.images.length > 0 && (
+                    <div className={`flex flex-wrap gap-4 justify-center ${step.images.length === 1 ? 'md:justify-end' : ''}`}>
+                      {step.images.map((img) => {
+                        const isPhone = img.h > img.w;
+                        return (
+                          <div
+                            key={img.src}
+                            className={`bg-white/5 border border-white/10 rounded-2xl p-2 shadow-2xl shadow-black/40 ${
+                              isPhone ? 'max-w-[200px]' : 'max-w-[420px] flex-1'
+                            }`}
+                          >
+                            <Image
+                              src={img.src}
+                              alt={img.alt}
+                              width={img.w}
+                              height={img.h}
+                              className="rounded-xl w-full h-auto"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </div>

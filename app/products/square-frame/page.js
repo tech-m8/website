@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'BorderM8 — Batch Photo Borders | TechM8',
-  description: 'BorderM8 pads your photos onto a clean white square, adds a two-line caption with EXIF camera details, and exports square JPEGs. On-device, no permissions, no cloud. Setup guide, screenshots, and APK download.',
+  title: 'Square Frame — Batch Photo Borders | TechM8',
+  description: 'Square Frame pads your photos onto a clean white square, adds a two-line caption with EXIF camera details, and exports square JPEGs. On-device, no permissions, no cloud. Setup guide, screenshots, and APK download.',
 };
 
 const features = [
@@ -13,7 +13,7 @@ const features = [
   },
   {
     title: 'Caption from EXIF',
-    desc: 'Two text lines under the photo. Drop in variables like {camera}, {lens}, {aperture}, {shutter}, {iso} and BorderM8 fills them from each photo’s EXIF.',
+    desc: 'Two text lines under the photo. Drop in variables like {camera}, {lens}, {aperture}, {shutter}, {iso} and Square Frame fills them from each photo’s EXIF.',
   },
   {
     title: 'Batch in one tap',
@@ -30,7 +30,7 @@ const steps = [
     title: 'Install the app',
     body: 'Download the APK on an Android 10+ (API 29) phone and open it to sideload. You may need to allow installs from your browser or file manager the first time. On first launch you land on the Editor tab.',
     images: [
-      { src: '/screenshots/borderm8-launch.png', alt: 'BorderM8 Editor tab on first launch with Pick photos button', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-launch.png', alt: 'Square Frame Editor tab on first launch with Pick photos button', w: 1080, h: 2340 },
     ],
     cta: { href: '#downloads', label: 'Jump to download' },
   },
@@ -38,34 +38,34 @@ const steps = [
     title: 'Pick your photos',
     body: 'Tap Pick photos. The Android Photo Picker lets you multi-select — no storage permission needed. Choose your shots and tap Done; the button then shows how many you picked.',
     images: [
-      { src: '/screenshots/borderm8-picker.png', alt: 'Android Photo Picker with three photos selected', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-picker.png', alt: 'Android Photo Picker with three photos selected', w: 1080, h: 2340 },
     ],
   },
   {
     title: 'Set the caption text (optional)',
     body: 'Captions are entirely up to you — skip this and you get a clean white border with no text. If you do want a caption, fill Title (line 1) and Description (line 2) for each photo, or leave a field blank to fall back to the default from Settings. The live Preview shows the framed square result, a thumbnail strip lets you swap between photos, and the big button saves the whole batch.',
     images: [
-      { src: '/screenshots/borderm8-editor.png', alt: 'BorderM8 Editor with a title typed, live square preview, and photo strip', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-editor.png', alt: 'Square Frame Editor with a title typed, live square preview, and photo strip', w: 1080, h: 2340 },
     ],
   },
   {
     title: 'Use EXIF variables (optional)',
     body: 'Type variables like {camera}, {lens}, {aperture}, {shutter}, {iso}, {focal}, {date} in any text field — each is replaced with that photo’s EXIF value. Tap the variables link to open the full reference with examples.',
     images: [
-      { src: '/screenshots/borderm8-variables.png', alt: 'BorderM8 Variables reference listing EXIF tokens', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-variables.png', alt: 'Square Frame Variables reference listing EXIF tokens', w: 1080, h: 2340 },
     ],
   },
   {
     title: 'Set defaults & fonts (optional)',
     body: 'Open the Settings tab (⚙). Default Texts sets the line 1 / line 2 used when a photo’s field is blank — here {camera} and {lens}, with a live preview. The Fonts tab picks the typeface for each line, applied to every export.',
     images: [
-      { src: '/screenshots/borderm8-defaults.png', alt: 'BorderM8 Settings Default Texts with camera and lens variables and a live preview', w: 1080, h: 2340 },
-      { src: '/screenshots/borderm8-fonts.png', alt: 'BorderM8 Settings Fonts tab with per-line typeface pickers', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-defaults.png', alt: 'Square Frame Settings Default Texts with camera and lens variables and a live preview', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-fonts.png', alt: 'Square Frame Settings Fonts tab with per-line typeface pickers', w: 1080, h: 2340 },
     ],
   },
   {
     title: 'Add borders & save',
-    body: 'Back on the Editor tab, tap Add borders & save. The whole batch is rendered to 2160×2160 squares and written to Pictures/BorderM8 in your gallery — a counter shows progress, then a Saved confirmation.',
+    body: 'Back on the Editor tab, tap Add borders & save. The whole batch is rendered to 2160×2160 squares and written to Pictures/SquareFrame in your gallery — a counter shows progress, then a Saved confirmation.',
     images: [],
   },
 ];
@@ -73,10 +73,10 @@ const steps = [
 const downloads = [
   {
     platform: 'Android',
-    name: 'BorderM8 APK',
+    name: 'Square Frame APK',
     desc: 'Install on Android 10+ (API 29) phones. Sideload via the APK.',
-    href: '/downloads/borderm8.apk',
-    filename: 'borderm8.apk',
+    href: '/downloads/square-frame.apk',
+    filename: 'square-frame.apk',
     icon: (
       <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
         <path d="M17.523 15.341a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m-11.046 0a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m11.42-6.122l2.076-3.595a.42.42 0 00-.726-.42l-2.1 3.638A12.94 12.94 0 0012 7.5c-1.844 0-3.587.387-5.147 1.082L4.753 4.944a.42.42 0 00-.726.42l2.076 3.595C2.474 11.054 0 14.27 0 17.998h24c0-3.728-2.473-6.944-6.103-8.78" />
@@ -85,7 +85,7 @@ const downloads = [
   },
 ];
 
-export default function BorderM8Page() {
+export default function Square FramePage() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
       {/* Hero */}
@@ -110,7 +110,7 @@ export default function BorderM8Page() {
             Android
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">BorderM8</span>
+            <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Square Frame</span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
             Batch white borders for your photos. Pad each shot onto a clean white square, add a caption with your camera details, and export square JPEGs — all on-device, no permissions, no cloud.
@@ -120,7 +120,7 @@ export default function BorderM8Page() {
               href="#downloads"
               className="inline-block bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
             >
-              Get BorderM8
+              Get Square Frame
             </a>
             <a
               href="#tutorial"
@@ -167,8 +167,8 @@ export default function BorderM8Page() {
             <div className="flex justify-center">
               <div className="bg-white rounded-xl shadow-2xl shadow-black/50 p-2 max-w-sm w-full">
                 <Image
-                  src="/screenshots/borderm8-result.jpg"
-                  alt="Example BorderM8 export — red Ixora flowers on a white square with caption"
+                  src="/screenshots/square-frame-result.jpg"
+                  alt="Example Square Frame export — red Ixora flowers on a white square with caption"
                   width={2160}
                   height={2160}
                   className="rounded-lg w-full h-auto"
@@ -185,7 +185,7 @@ export default function BorderM8Page() {
         <div className="relative max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Download <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">BorderM8</span>
+              Download <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Square Frame</span>
             </h2>
             <p className="text-gray-400 text-sm">Sideload the APK on an Android 10+ phone.</p>
           </div>
@@ -289,7 +289,7 @@ export default function BorderM8Page() {
       {/* Footer */}
       <footer className="relative pb-12">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <Link href="/products/borderm8/privacy" className="text-violet-300 hover:text-violet-200 text-sm">
+          <Link href="/products/square-frame/privacy" className="text-violet-300 hover:text-violet-200 text-sm">
             Privacy Policy
           </Link>
         </div>

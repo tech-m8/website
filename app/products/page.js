@@ -14,8 +14,8 @@ const products = [
     badge: 'Android + macOS',
   },
   {
-    slug: 'borderm8',
-    name: 'BorderM8',
+    slug: 'square-frame',
+    name: 'Square Frame',
     tagline: 'Batch white borders for your photos.',
     desc: 'Pad photos to a clean white square, add a caption with your camera details, and export square JPEGs — all on-device.',
     badge: 'Android',

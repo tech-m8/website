@@ -85,7 +85,7 @@ const downloads = [
   },
 ];
 
-export default function Square FramePage() {
+export default function SquareFramePage() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
       {/* Hero */}

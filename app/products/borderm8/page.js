@@ -285,6 +285,15 @@ export default function BorderM8Page() {
           </ol>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="relative pb-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <Link href="/products/borderm8/privacy" className="text-violet-300 hover:text-violet-200 text-sm">
+            Privacy Policy
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }

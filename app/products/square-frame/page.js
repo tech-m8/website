@@ -2,26 +2,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Square Frame — Batch Photo Borders | TechM8',
-  description: 'Square Frame pads your photos onto a clean white square, adds a two-line caption with EXIF camera details, and exports square JPEGs. On-device, no permissions, no cloud. Setup guide, screenshots, and APK download.',
+  title: 'Square Frame — No-Crop Photo Borders | TechM8',
+  description: 'Square Frame pads your photos onto a clean white square — never cropped — with a thin black frame and soft shadow, then saves or shares square JPEGs. Batch a whole shoot, or frame your latest shots in one tap from the home-screen widget. On-device, no account, no cloud.',
 };
 
 const features = [
   {
-    title: 'Square white border',
-    desc: 'Each photo is scaled to fit — never cropped — and sits on a white square with a thin black frame and soft shadow. A two-line caption goes underneath, ready for a feed.',
+    title: 'No crop — your whole photo',
+    desc: 'Every shot is scaled to fit, never cropped, and sits on a clean white square with a thin black hairline frame and a soft drop shadow. Portrait or landscape, the whole frame stays.',
   },
   {
-    title: 'Caption from EXIF',
-    desc: 'Two text lines under the photo. Drop in variables like {camera}, {lens}, {aperture}, {shutter}, {iso} and Square Frame fills them from each photo’s EXIF.',
+    title: 'Quick Frame widget',
+    desc: 'A home-screen widget frames a whole shoot in one tap. “Recent” squares your latest photos automatically; “Pick” opens the photo picker — no need to open the app first.',
   },
   {
-    title: 'Batch in one tap',
-    desc: 'Pick a whole batch, set per-photo text or a shared default, then export them all at once to your gallery as square q95 JPEGs.',
+    title: 'Save or share',
+    desc: 'Frame a batch and save full-resolution square JPEGs to your gallery, or send the framed copies straight to a share sheet — sharing frames without saving anything to your gallery.',
   },
   {
     title: 'On-device & private',
-    desc: 'Uses the Android Photo Picker — no storage permission, no account, no network. Nothing leaves your phone.',
+    desc: 'No account, no network, nothing uploaded. Picking photos uses the Android Photo Picker (no permission); the widget’s “Recent” reads only your most recent photos to frame them.',
   },
 ];
 
@@ -29,44 +29,29 @@ const steps = [
   {
     title: 'Install the app',
     body: 'Download the APK on an Android 10+ (API 29) phone and open it to sideload. You may need to allow installs from your browser or file manager the first time. On first launch you land on the Editor tab.',
-    images: [
-      { src: '/screenshots/square-frame-launch.png', alt: 'Square Frame Editor tab on first launch with Pick photos button', w: 1080, h: 2340 },
-    ],
+    images: [],
     cta: { href: '#downloads', label: 'Jump to download' },
   },
   {
-    title: 'Pick your photos',
-    body: 'Tap Pick photos. The Android Photo Picker lets you multi-select — no storage permission needed. Choose your shots and tap Done; the button then shows how many you picked.',
+    title: 'Pick photos or grab your recent shots',
+    body: 'Tap Add Photos to multi-select with the Android Photo Picker — no storage permission needed — or tap Recent Photos to pull in your latest shots automatically. Either way the whole batch loads into the editor.',
     images: [
-      { src: '/screenshots/square-frame-picker.png', alt: 'Android Photo Picker with three photos selected', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-picker.png', alt: 'Android Photo Picker with several photos selected', w: 1080, h: 2340 },
     ],
   },
   {
-    title: 'Set the caption text (optional)',
-    body: 'Captions are entirely up to you — skip this and you get a clean white border with no text. If you do want a caption, fill Title (line 1) and Description (line 2) for each photo, or leave a field blank to fall back to the default from Settings. The live Preview shows the framed square result, a thumbnail strip lets you swap between photos, and the big button saves the whole batch.',
+    title: 'Preview, then Save or Share',
+    body: 'The live Preview shows the squared white-frame result, and a thumbnail strip lets you swap between photos in the batch. Tap Save to write full-resolution squares to Pictures/SquareFrame, or Share to send the framed copies straight to a share sheet — Share frames without saving to your gallery.',
     images: [
-      { src: '/screenshots/square-frame-editor.png', alt: 'Square Frame Editor with a title typed, live square preview, and photo strip', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-editor.png', alt: 'Square Frame editor with the squared preview, batch thumbnail strip, and Save · Share · Remove All buttons', w: 1080, h: 2340 },
     ],
   },
   {
-    title: 'Use EXIF variables (optional)',
-    body: 'Type variables like {camera}, {lens}, {aperture}, {shutter}, {iso}, {focal}, {date} in any text field — each is replaced with that photo’s EXIF value. Tap the variables link to open the full reference with examples.',
+    title: 'One tap from your home screen',
+    body: 'Add the Quick Frame widget to your home screen. “Recent” frames your latest shots in a single tap and saves the squares to your gallery; “Pick” jumps straight to the photo picker. No need to open the app.',
     images: [
-      { src: '/screenshots/square-frame-variables.png', alt: 'Square Frame Variables reference listing EXIF tokens', w: 1080, h: 2340 },
+      { src: '/screenshots/square-frame-widget.png', alt: 'Quick Frame home-screen widget with Recent and Pick buttons', w: 1080, h: 2340 },
     ],
-  },
-  {
-    title: 'Set defaults & fonts (optional)',
-    body: 'Open the Settings tab (⚙). Default Texts sets the line 1 / line 2 used when a photo’s field is blank — here {camera} and {lens}, with a live preview. The Fonts tab picks the typeface for each line, applied to every export.',
-    images: [
-      { src: '/screenshots/square-frame-defaults.png', alt: 'Square Frame Settings Default Texts with camera and lens variables and a live preview', w: 1080, h: 2340 },
-      { src: '/screenshots/square-frame-fonts.png', alt: 'Square Frame Settings Fonts tab with per-line typeface pickers', w: 1080, h: 2340 },
-    ],
-  },
-  {
-    title: 'Add borders & save',
-    body: 'Back on the Editor tab, tap Add borders & save. The whole batch is rendered to 2160×2160 squares and written to Pictures/SquareFrame in your gallery — a counter shows progress, then a Saved confirmation.',
-    images: [],
   },
 ];
 
@@ -113,7 +98,7 @@ export default function SquareFramePage() {
             <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Square Frame</span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-            Batch white borders for your photos. Pad each shot onto a clean white square, add a caption with your camera details, and export square JPEGs — all on-device, no permissions, no cloud.
+            No-crop white borders for your photos. Pad each shot onto a clean white square, then save or share square JPEGs — batch a whole shoot, or frame your latest shots in one tap from the home-screen widget. All on-device, no account, no cloud.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <a
@@ -158,19 +143,19 @@ export default function SquareFramePage() {
                 A clean <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">square frame</span>
               </h2>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                The output is a 2160×2160 white square. Your photo is scaled to fit (never cropped), bottom-aligned with white margins, and wrapped in a thin black hairline frame with a soft drop shadow. The two caption lines sit centered just below.
+                The output is a 2160×2160 white square. Your photo is scaled to fit — never cropped — centered with even white margins, and wrapped in a thin black hairline frame with a soft drop shadow. Exported as a full-resolution JPEG, ready for a feed.
               </p>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Real export from the app — Title in Averia Serif Libre, the lens line pulled straight from EXIF.
+                Real export from the app — a portrait shot squared with no crop.
               </p>
             </div>
             <div className="flex justify-center">
               <div className="bg-white rounded-xl shadow-2xl shadow-black/50 p-2 max-w-sm w-full">
                 <Image
-                  src="/screenshots/square-frame-result.jpg"
-                  alt="Example Square Frame export — red Ixora flowers on a white square with caption"
-                  width={2160}
-                  height={2160}
+                  src="/screenshots/square-frame-result.png"
+                  alt="Example Square Frame export — a cloud photo padded onto a white square with a thin black frame"
+                  width={967}
+                  height={967}
                   className="rounded-lg w-full h-auto"
                 />
               </div>
@@ -225,7 +210,7 @@ export default function SquareFramePage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               How to <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">use it</span>
             </h2>
-            <p className="text-gray-400 text-sm">From install to a saved batch in six steps. Screenshots from the real app.</p>
+            <p className="text-gray-400 text-sm">From install to a saved batch in four steps. Screenshots from the real app.</p>
           </div>
           <ol className="space-y-12">
             {steps.map((step, i) => (

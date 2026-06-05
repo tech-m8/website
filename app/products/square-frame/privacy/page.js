@@ -97,8 +97,8 @@ const sections = [
     body: (
       <p>
         Questions about this policy? Contact us at{' '}
-        <a href="mailto:masnun@gmail.com" className="text-violet-300 hover:text-violet-200 underline">
-          masnun@gmail.com
+        <a href="mailto:masnun@tech-m8.solutions" className="text-violet-300 hover:text-violet-200 underline">
+          masnun@tech-m8.solutions
         </a>.
       </p>
     ),

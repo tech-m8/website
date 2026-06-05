@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'Square Frame Privacy Policy | TechM8',
-  description: 'Square Frame collects no data. All photo and EXIF processing happens on-device, with no account, no network, and no tracking. Read the full privacy policy.',
+  description: 'Square Frame collects no data. All photo processing happens on-device, with no account, no network, and no tracking. Read the full privacy policy.',
 };
 
 const sections = [
@@ -20,15 +20,17 @@ const sections = [
     title: 'How your photos are used',
     body: (
       <ul className="list-disc pl-5 space-y-2">
-        <li>You choose which photos to open with the Android Photo Picker — the app only
-          accesses the photos you explicitly select.</li>
-        <li>The app reads each selected photo and its embedded EXIF metadata (camera model,
-          lens, aperture, shutter speed, ISO, focal length, date) to build the caption.</li>
-        <li>All image processing happens locally on your device. Your photos are never
-          uploaded anywhere.</li>
-        <li>The finished image is saved back to your gallery in the
+        <li>When you tap Add Photos or Pick, you choose which photos to open with the Android
+          Photo Picker — the app only accesses the photos you explicitly select.</li>
+        <li>When you tap Recent Photos (or the widget’s “Recent”), the app reads your most
+          recent photos so it can frame them automatically — see Permissions below.</li>
+        <li>The app reads each photo only to render the squared white frame. All image
+          processing happens locally on your device; your photos are never uploaded anywhere.</li>
+        <li>Tapping Save writes the framed copies to your gallery in the
           <code className="mx-1 px-1.5 py-0.5 rounded bg-white/10 text-violet-200 text-xs">Pictures/SquareFrame</code>
-          folder. The app keeps no separate copy.</li>
+          folder. Tapping Share hands the framed copies to the Android share sheet so you can
+          send them to an app of your choice — this does not save them to your gallery. The app
+          keeps no separate copy.</li>
       </ul>
     ),
   },
@@ -36,8 +38,8 @@ const sections = [
     title: 'Network access',
     body: (
       <p>
-        Square Frame does not send your photos, EXIF data, or any other information over the
-        internet. The app works fully offline.
+        Square Frame does not send your photos or any other information over the internet. The
+        app works fully offline.
       </p>
     ),
   },
@@ -59,11 +61,17 @@ const sections = [
   {
     title: 'Permissions',
     body: (
-      <p>
-        Square Frame requests no sensitive runtime permissions. Photo access is granted
-        per-selection through the system photo picker, and saving uses the system media
-        store — neither requires broad storage permission.
-      </p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li><strong className="text-white">Add Photos / Pick</strong> grant photo access
+          per-selection through the system Photo Picker, and saving uses the system media store —
+          neither requires a storage permission.</li>
+        <li><strong className="text-white">Recent Photos / the widget’s “Recent”</strong> use the
+          <code className="mx-1 px-1.5 py-0.5 rounded bg-white/10 text-violet-200 text-xs">READ_MEDIA_IMAGES</code>
+          permission so the app can read your most recent photos and frame them in one tap
+          without a manual pick. The app reads those images only to render the frames — it does
+          not browse, copy, or transmit your library. You can deny this permission and still use
+          Add Photos / Pick.</li>
+      </ul>
     ),
   },
   {
@@ -112,10 +120,10 @@ export default function SquareFramePrivacyPage() {
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
             Privacy <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Policy</span>
           </h1>
-          <p className="text-gray-500 text-sm mb-8">Last updated: 3 June 2026</p>
+          <p className="text-gray-500 text-sm mb-8">Last updated: 6 June 2026</p>
           <p className="text-gray-300 leading-relaxed">
-            Square Frame adds a white square frame and a caption built from your photo’s camera
-            (EXIF) data. This policy explains what the app does and does not do with your
+            Square Frame pads your photos onto a clean white square — never cropped — then saves
+            or shares them. This policy explains what the app does and does not do with your
             information. In short: <strong className="text-white">everything happens on your
             device, and Square Frame collects nothing.</strong>
           </p>

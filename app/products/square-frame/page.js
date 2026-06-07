@@ -102,10 +102,15 @@ export default function SquareFramePage() {
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <a
-              href="#downloads"
-              className="inline-block bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
+              href="https://play.google.com/store/apps/details?id=techm8.square_frame"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
             >
-              Get Square Frame
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.39 12l2.308-2.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z" />
+              </svg>
+              Get on Google Play
             </a>
             <a
               href="#tutorial"
@@ -170,10 +175,57 @@ export default function SquareFramePage() {
         <div className="relative max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Download <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Square Frame</span>
+              Get <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Square Frame</span>
             </h2>
-            <p className="text-gray-400 text-sm">Sideload the APK on an Android 10+ phone.</p>
+            <p className="text-gray-400 text-sm">Now in open testing on Google Play, or sideload the APK on an Android 10+ phone.</p>
           </div>
+
+          {/* Google Play testing */}
+          <div className="max-w-2xl mx-auto mb-8 bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <svg className="w-7 h-7" viewBox="0 0 24 24">
+                  <path fill="#34a853" d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z" />
+                  <path fill="#fbbc04" d="M16.802 8.99l-2.302 3.01-8.636-8.634L16.802 8.99z" />
+                  <path fill="#ea4335" d="M14.5 12l2.302 3.01-10.938 6.332L14.5 12z" />
+                  <path fill="#4285f4" d="M17.698 9.509l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.39 12l2.308-2.491z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold">Google Play · Open testing</div>
+                <h3 className="font-bold text-white text-lg">Join the test</h3>
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              Square Frame is in open testing on Google Play. Join from your Android device, or opt in on the web first — auto-updates, no sideloading.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://play.google.com/store/apps/details?id=techm8.square_frame"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.39 12l2.308-2.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z" />
+                </svg>
+                Join on Android
+              </a>
+              <a
+                href="https://play.google.com/apps/testing/techm8.square_frame"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 px-6 py-3 rounded-lg text-sm font-semibold transition-all"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
+                </svg>
+                Opt in on the web
+              </a>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 max-w-md mx-auto gap-6">
             {downloads.map((d) => (
               <div key={d.platform} className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">

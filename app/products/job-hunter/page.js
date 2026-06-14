@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import CopyCommand from '@/components/CopyCommand';
 
 export const metadata = {
   title: 'Job Hunter — AI Job-Hunting Agent | TechM8',
@@ -145,12 +146,12 @@ export default function JobHunterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
-              <pre className="rounded-lg bg-black/50 border border-white/10 p-4 overflow-x-auto text-xs text-violet-100"><code>{installCmdUnix}</code></pre>
+              <CopyCommand text={installCmdUnix} />
               <p className="text-gray-500 text-xs mt-3">Detects your CPU, verifies the checksum, installs to your PATH, and clears the macOS quarantine flag automatically.</p>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">Windows (PowerShell)</div>
-              <pre className="rounded-lg bg-black/50 border border-white/10 p-4 overflow-x-auto text-xs text-violet-100"><code>{installCmdWin}</code></pre>
+              <CopyCommand text={installCmdWin} />
               <p className="text-gray-500 text-xs mt-3">Installs under your user profile and adds it to PATH. Windows SmartScreen may warn on the unsigned binary — choose &ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;.</p>
             </div>
           </div>

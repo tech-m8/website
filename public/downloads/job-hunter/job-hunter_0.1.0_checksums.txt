@@ -1,0 +1,5 @@
+e17081c7fa4c7d8505dedd6160266a71d28f62738f9190c7c1d20b0bb560922a  job-hunter_0.1.0_darwin_arm64.tar.gz
+dc80e749c74d1d2b473ec37157932288351b40f91409082934255d49bc9c5c83  job-hunter_0.1.0_darwin_amd64.tar.gz
+3d5bc4e3e29be5a82c572ea39568565b1f07fc6157ad7dde39e952e069ab0755  job-hunter_0.1.0_linux_arm64.tar.gz
+6d584eb5603bd9e5f6516554c82ff40d67dd5ec5866bb748f26cbf6c476f2446  job-hunter_0.1.0_linux_amd64.tar.gz
+e0cf653388384b4ebad42d58cfe0c0611e8078e648db698e1791be0d60a5dbfe  job-hunter_0.1.0_windows_amd64.zip

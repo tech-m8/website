@@ -7,6 +7,13 @@ export const metadata = {
 
 const products = [
   {
+    slug: 'job-hunter',
+    name: 'Job Hunter',
+    tagline: 'An AI job-hunting agent on your own machine.',
+    desc: 'Researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs, no API keys.',
+    badge: 'macOS · Linux · Windows',
+  },
+  {
     slug: 'droidm8',
     name: 'DroidM8',
     tagline: 'Bridge your Android phone with your Mac.',

@@ -28,7 +28,7 @@ const features = [
 const steps = [
   {
     title: 'Install both apps',
-    body: 'Grab the APK on your Android phone and the Mac app on macOS. The Android app needs Android 9+. The Mac app needs macOS 15+ and runs from the menu bar.',
+    body: 'Grab the APK on your Android phone and install the Mac app with the one-line Terminal command below. The Android app needs Android 9+. The Mac app needs macOS 13+ and runs from the menu bar.',
     images: [],
     cta: { href: '#downloads', label: 'Jump to downloads' },
   },
@@ -97,7 +97,7 @@ const downloads = [
   {
     platform: 'Android',
     name: 'DroidM8 APK',
-    desc: 'Install on Android 9+ phones. Sideload via the APK.',
+    desc: 'Install on Android 9+ phones. Sideload via the APK. Signed release build — if you installed an earlier test build, uninstall it first (different signature).',
     href: '/downloads/droidm8.apk',
     filename: 'droidm8.apk',
     icon: (
@@ -106,19 +106,9 @@ const downloads = [
       </svg>
     ),
   },
-  {
-    platform: 'macOS',
-    name: 'DroidM8 for Mac',
-    desc: 'Menu-bar companion for macOS 15+. Apple Silicon and Intel. Ships as a .dmg — see install notes below before launching.',
-    href: '/downloads/DroidM8-mac.dmg',
-    filename: 'DroidM8-mac.dmg',
-    icon: (
-      <svg className="w-7 h-7 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-      </svg>
-    ),
-  },
 ];
+
+const MAC_INSTALL_CMD = 'curl -fsSL https://tech-m8.solutions/downloads/droidm8/install.sh | sh';
 
 export default function DroidM8Page() {
   return (
@@ -194,33 +184,30 @@ export default function DroidM8Page() {
             </h2>
             <p className="text-gray-400 text-sm">Install both apps and pair them with a PIN.</p>
           </div>
-          <div role="alert" className="mb-8 rounded-2xl border border-red-500/40 bg-red-500/10 p-6 text-left">
+          <div className="mb-8 rounded-2xl border border-violet-500/40 bg-violet-500/10 p-6 text-left">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-red-500/20 border border-red-500/40 flex items-center justify-center">
-                <svg className="w-5 h-5 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-violet-500/20 border border-violet-500/40 flex items-center justify-center">
+                <svg className="w-5 h-5 text-violet-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
               </div>
-              <div className="flex-1">
-                <h3 className="text-red-200 font-bold text-base mb-2">macOS users — read before installing</h3>
-                <p className="text-red-100/90 text-sm leading-relaxed mb-3">
-                  The Mac app is <strong>not signed with an Apple Developer ID</strong>, so macOS Gatekeeper will block it on first launch with a “Droid M8 Not Opened — Apple could not verify…” warning. To install:
+              <div className="flex-1 min-w-0">
+                <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-1">macOS 13+ · Apple Silicon &amp; Intel</div>
+                <h3 className="text-white font-bold text-lg mb-2">Install Droid M8 for Mac</h3>
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                  Paste this in <strong>Terminal</strong> (Applications → Utilities, or Spotlight → “Terminal”) and press Return. It downloads the app, verifies its checksum, installs it to <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-100">/Applications</code>, and launches it.
                 </p>
-                <ol className="list-decimal list-inside text-red-100/90 text-sm leading-relaxed space-y-2 mb-3">
-                  <li>Open the downloaded <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">DroidM8-mac.dmg</code> and drag <strong>Droid M8.app</strong> onto the <strong>Applications</strong> shortcut inside the disk image.</li>
-                  <li>
-                    Open <strong>Terminal</strong> (Applications → Utilities, or Spotlight → “Terminal”) and paste this command, then press Return. This removes the quarantine flag macOS attaches to downloaded apps:
-                    <pre className="mt-2 rounded-lg bg-black/40 border border-red-500/30 p-3 overflow-x-auto text-xs text-red-100"><code>xattr -dr com.apple.quarantine &quot;/Applications/Droid M8.app&quot;</code></pre>
-                  </li>
-                  <li>Launch <strong>Droid M8</strong> from <code className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-100">/Applications</code> or Spotlight. It should now open without the Gatekeeper warning.</li>
-                </ol>
-                <p className="text-red-100/70 text-xs leading-relaxed mt-3">
-                  Verify the download (optional): <a href="/downloads/DroidM8-mac.dmg.sha256" className="underline hover:text-red-100">SHA-256 checksum</a>.
+                <pre className="rounded-lg bg-black/50 border border-violet-500/30 p-4 overflow-x-auto text-xs sm:text-sm text-violet-100"><code>{MAC_INSTALL_CMD}</code></pre>
+                <p className="text-gray-400 text-xs leading-relaxed mt-4">
+                  No Gatekeeper warning: a <code className="px-1 py-0.5 rounded bg-white/10 text-violet-100">curl</code> download isn’t quarantined the way a browser download is, so the app — though not signed with an Apple Developer ID — launches without the “Apple could not verify…” block.
+                </p>
+                <p className="text-gray-500 text-xs leading-relaxed mt-2">
+                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="/downloads/DroidM8-mac.tar.gz.sha256" className="underline hover:text-violet-200">SHA-256 checksum</a>
                 </p>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 max-w-md mx-auto">
             {downloads.map((d) => (
               <div key={d.platform} className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">
                 <div className="flex items-center gap-4 mb-4">

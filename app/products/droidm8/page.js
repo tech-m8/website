@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import CopyCommand from '@/components/CopyCommand';
 
 export const metadata = {
   title: 'DroidM8 — Bridge Android & Mac | TechM8',
@@ -197,7 +198,7 @@ export default function DroidM8Page() {
                 <p className="text-gray-300 text-sm leading-relaxed mb-4">
                   Paste this in <strong>Terminal</strong> (Applications → Utilities, or Spotlight → “Terminal”) and press Return. It downloads the app, verifies its checksum, installs it to <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-100">/Applications</code>, and launches it.
                 </p>
-                <pre className="rounded-lg bg-black/50 border border-violet-500/30 p-4 overflow-x-auto text-xs sm:text-sm text-violet-100"><code>{MAC_INSTALL_CMD}</code></pre>
+                <CopyCommand text={MAC_INSTALL_CMD} border="border-violet-500/30" />
                 <p className="text-gray-400 text-xs leading-relaxed mt-4">
                   No Gatekeeper warning: a <code className="px-1 py-0.5 rounded bg-white/10 text-violet-100">curl</code> download isn’t quarantined the way a browser download is, so the app — though not signed with an Apple Developer ID — launches without the “Apple could not verify…” block.
                 </p>

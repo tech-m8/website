@@ -63,20 +63,8 @@ const steps = [
   },
 ];
 
-const JH_VERSION = '0.1.0';
-const DL_BASE = '/downloads/job-hunter';
-
 const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
-
-// Direct archive links, for people who would rather not pipe a script to a shell.
-const directDownloads = [
-  { label: 'macOS · Apple Silicon', file: `job-hunter_${JH_VERSION}_darwin_arm64.tar.gz` },
-  { label: 'macOS · Intel', file: `job-hunter_${JH_VERSION}_darwin_amd64.tar.gz` },
-  { label: 'Linux · arm64', file: `job-hunter_${JH_VERSION}_linux_arm64.tar.gz` },
-  { label: 'Linux · amd64', file: `job-hunter_${JH_VERSION}_linux_amd64.tar.gz` },
-  { label: 'Windows · amd64', file: `job-hunter_${JH_VERSION}_windows_amd64.zip` },
-];
 
 export default function JobHunterPage() {
   return (
@@ -165,30 +153,6 @@ export default function JobHunterPage() {
               <pre className="rounded-lg bg-black/50 border border-white/10 p-4 overflow-x-auto text-xs text-violet-100"><code>{installCmdWin}</code></pre>
               <p className="text-gray-500 text-xs mt-3">Installs under your user profile and adds it to PATH. Windows SmartScreen may warn on the unsigned binary — choose &ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;.</p>
             </div>
-          </div>
-
-          {/* Direct downloads */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
-            <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-4">Or download directly · v{JH_VERSION}</div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {directDownloads.map((d) => (
-                <li key={d.file}>
-                  <a
-                    href={`${DL_BASE}/${d.file}`}
-                    download
-                    className="flex items-center gap-2 text-gray-300 hover:text-white text-sm py-1.5 transition-colors"
-                  >
-                    <svg className="w-4 h-4 flex-shrink-0 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-                    </svg>
-                    {d.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <p className="text-gray-500 text-xs mt-4">
-              Verify against <a href={`${DL_BASE}/job-hunter_${JH_VERSION}_checksums.txt`} className="underline hover:text-gray-300">checksums.txt</a>. On macOS, unpack then clear quarantine: <code className="px-1.5 py-0.5 rounded bg-white/10 text-gray-200">xattr -d com.apple.quarantine job-hunter</code>.
-            </p>
           </div>
 
           {/* License note */}

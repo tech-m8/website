@@ -37,14 +37,14 @@ const steps = [
     title: 'Open Droid M8 on your Mac',
     body: 'First launch opens a window with three tabs. Go to Devices — you\'ll see a 6-digit pairing PIN. Keep this window open; the phone needs that number next.',
     images: [
-      { src: '/screenshots/mac-04-devices.png', alt: 'Droid M8 Mac app Devices tab showing pairing PIN', w: 760, h: 802 },
+      { src: '/screenshots/mac-04-devices.png', alt: 'Droid M8 Mac app Devices tab showing pairing PIN', w: 920, h: 984 },
     ],
   },
   {
     title: 'Find the app from your menu bar',
     body: 'Droid M8 lives in the menu bar. Click the icon any time to reopen the window, send the clipboard, or jump to recent items. The pairing PIN also shows under Clipboard in the main menu.',
     images: [
-      { src: '/screenshots/mac-05-menu-pin.png', alt: 'Droid M8 menu bar dropdown showing pairing PIN and quick actions', w: 600, h: 500 },
+      { src: '/screenshots/mac-05-menu-pin.png', alt: 'Droid M8 menu bar dropdown showing pairing PIN and quick actions', w: 570, h: 360 },
     ],
   },
   {
@@ -65,7 +65,7 @@ const steps = [
     title: 'Grant Full Disk Access on the Mac',
     body: 'For Mac → Phone notification mirroring, the Mac app needs Full Disk Access (it reads macOS\'s notification database). Open the Notifications tab on the Mac → click "Open Full Disk Access settings" → toggle Droid M8 on.',
     images: [
-      { src: '/screenshots/mac-03-notifications.png', alt: 'Droid M8 Mac Notifications tab with Full Disk Access prompt', w: 760, h: 802 },
+      { src: '/screenshots/mac-03-notifications.png', alt: 'Droid M8 Mac Notifications tab with Full Disk Access prompt', w: 920, h: 984 },
     ],
   },
   {
@@ -73,7 +73,7 @@ const steps = [
     body: 'Copy text on either device — it shows up on the other within a second, end-to-end encrypted with your PIN. The Clipboard tab on either side keeps a history you can re-copy or resend.',
     images: [
       { src: '/screenshots/android-01-syncing-clipboard.png', alt: 'Droid M8 Android Clipboard tab', w: 600, h: 1300 },
-      { src: '/screenshots/mac-02-clipboard.png', alt: 'Droid M8 Mac Clipboard tab', w: 760, h: 802 },
+      { src: '/screenshots/mac-02-clipboard.png', alt: 'Droid M8 Mac Clipboard tab', w: 920, h: 984 },
     ],
   },
   {

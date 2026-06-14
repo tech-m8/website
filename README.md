@@ -29,8 +29,20 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site is a static export (`output: 'export'` in `next.config.mjs`) hosted on
+**GitHub Pages**. Deploys are automatic: pushing to `main` triggers
+`.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and
+publishes the generated `out/` directory to Pages via
+[`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There is no manual deploy step — just merge to `main`.
+
+### Publishing downloads
+
+Release archives live under `public/downloads/`, served as static assets (e.g.
+`public/downloads/job-hunter/`). To ship a new product version: drop the new
+archives + checksums there, bump that product's `VERSION` file, and push — the
+Pages build copies `public/` into `out/` as-is. Installers resolve the current
+release from the `VERSION` file, so no code change is needed.

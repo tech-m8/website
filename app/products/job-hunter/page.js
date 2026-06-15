@@ -4,13 +4,13 @@ import CopyCommand from '@/components/CopyCommand';
 
 export const metadata = {
   title: 'Job Hunter — AI Job-Hunting Agent | TechM8',
-  description: 'Job Hunter is a local-first AI job-hunting agent. It researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your own voice — every claim fact-checked. Runs on your own AI CLIs (Claude, Gemini, Codex) with no API keys. All data stays on your machine.',
+  description: 'Job Hunter is a local-first AI job-hunting agent. It researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your own voice — every claim fact-checked. Run it on your own AI CLIs (Claude, Gemini, Codex) or your own cloud API keys (Anthropic, Gemini, OpenAI). All data stays on your machine.',
 };
 
 const features = [
   {
-    title: 'Your own AI CLIs — no API keys',
-    desc: 'Routes each task to your locally-installed Claude, Gemini, or Codex CLI, signed in with your own accounts. Nothing to provision, no keys to leak. If your primary tool fails it pauses and asks before switching.',
+    title: 'Your CLIs or your API keys',
+    desc: 'Route each task to your locally-installed Claude, Gemini, or Codex CLI — signed in with your own accounts, nothing to provision — or add a cloud API key for Anthropic, Gemini, or OpenAI. Every key is tested with a live call before it’s saved and stored only on your machine. Mix and match per task; a bundled local model is the last-resort fallback.',
   },
   {
     title: 'Honest fit score + gap coach',
@@ -19,6 +19,10 @@ const features = [
   {
     title: 'Writes in your voice',
     desc: 'Ingests your portfolio to build a voice fingerprint, then drafts a tailored cover letter, email, or CV that sounds like you — with a truthfulness guard that fact-checks every claim against your dossier.',
+  },
+  {
+    title: 'One-click job capture',
+    desc: 'A companion Chrome extension grabs a posting from any job board and sends it straight to the app — pulling the real job text client-side so only what matters reaches the agent. Or just paste a URL.',
   },
   {
     title: 'Company research + redaction',
@@ -30,7 +34,7 @@ const features = [
   },
   {
     title: 'Local-first & private',
-    desc: 'A single Go binary boots a web app at 127.0.0.1:7777. All data lives in ~/.job-hunter on your machine — no cloud, no account, no telemetry.',
+    desc: 'A single Go binary boots a web app at 127.0.0.1:7777. Your documents, drafts, and API keys all live in ~/.job-hunter on your machine — no cloud account, no telemetry.',
   },
 ];
 
@@ -42,17 +46,31 @@ const steps = [
     cta: { href: '#downloads', label: 'Jump to download' },
   },
   {
-    title: 'Build your profile and voice',
-    body: 'Drop in your CV, portfolio docs, and writing samples. Job Hunter builds a candidate dossier and a voice fingerprint, then runs an authenticity check so generated drafts sound like you — not like a template.',
+    title: 'Pick your AI — CLIs or API keys',
+    body: 'Job Hunter routes each task to an AI of your choice. Sign in to your local Claude, Gemini, or Codex CLI, or paste a cloud API key for Anthropic, Gemini, or OpenAI — each key is checked with a live test call before it’s saved. Set a primary tool and fallbacks per task; a bundled local model covers you if everything else is unavailable.',
     images: [
-      { src: '/screenshots/job-hunter-profile.png', alt: 'Job Hunter Profile & Voice Studio with the candidate dossier and voice fingerprint', w: 1600, h: 1000 },
+      { src: '/screenshots/job-hunter-keys.png', alt: 'Job Hunter Settings showing local CLIs alongside cloud API-key providers and the per-provider key validation modal', w: 1600, h: 1000 },
     ],
   },
   {
-    title: 'Add a job → see your honest match',
-    body: 'Paste a job posting. Job Hunter parses it, scores your real fit, and shows the must-haves you meet and the ones you miss — with a gap coach that tells you how to close them rather than papering over them.',
+    title: 'Build your profile and voice',
+    body: 'Drop in your CV, portfolio docs, and writing samples as PDFs or plain text. Job Hunter builds a candidate dossier and a voice fingerprint, then runs an authenticity check so generated drafts sound like you — not like a template.',
     images: [
-      { src: '/screenshots/job-hunter-match.png', alt: 'Job Hunter Match Explainer showing fit score and must-haves met versus missed', w: 1600, h: 1000 },
+      { src: '/screenshots/job-hunter-profile.png', alt: 'Job Hunter Profile view with the candidate dossier and voice studio', w: 1600, h: 1000 },
+    ],
+  },
+  {
+    title: 'Capture jobs in one click',
+    body: 'Paste a job URL, or use the companion Chrome extension to send a posting from any job board in one click. Job Hunter parses each role and lines them up with a fit score, so you can see at a glance what’s worth pursuing.',
+    images: [
+      { src: '/screenshots/job-hunter-jobs.png', alt: 'Job Hunter Jobs list with fit scores and the one-click Chrome extension capture link', w: 1600, h: 1000 },
+    ],
+  },
+  {
+    title: 'See your honest match',
+    body: 'Open a role to see your real fit, scored out of 100 with the reasoning shown — the must-haves you meet, the ones you miss, and a gap coach that tells you how to close them rather than papering over them. Ask the built-in assistant anything about the role and your fit.',
+    images: [
+      { src: '/screenshots/job-hunter-match.png', alt: 'Job Hunter job view showing an honest fit score with its reasoning and a gap coach', w: 1600, h: 1000 },
     ],
   },
   {
@@ -98,7 +116,7 @@ export default function JobHunterPage() {
             <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Job Hunter</span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-            An AI job-hunting agent that runs on your own machine. It researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs, no API keys.
+            An AI job-hunting agent that runs on your own machine. It researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Run it on your own AI CLIs or bring your own cloud API key — your choice.
           </p>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <a
@@ -211,7 +229,7 @@ job-hunter serve     # open the web app</code></pre>
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               How it <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">works</span>
             </h2>
-            <p className="text-gray-400 text-sm">From install to a tailored application in four steps.</p>
+            <p className="text-gray-400 text-sm">From install to a tailored application, step by step.</p>
           </div>
           <ol className="space-y-12">
             {steps.map((step, i) => (

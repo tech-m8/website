@@ -67,6 +67,9 @@ const steps = [
 const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
 
+// Beta tester license key — valid through June 30, 2026.
+const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wNy0wMVQwNDowOTozNy45ODg1MzdaIn0.5NtqCmeWIPiRz2A66puwVrSz07WLVhGra94GLiaPhiTZBOkmaha32AdzflqMlKUmmQUaFQF2WGsgDNuwIQTzBg`;
+
 export default function JobHunterPage() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
@@ -156,6 +159,27 @@ export default function JobHunterPage() {
             </div>
           </div>
 
+          {/* Beta tester key */}
+          <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-6 text-left mb-8">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+                <svg className="w-5 h-5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <h3 className="text-emerald-200 font-bold text-base">Free beta tester key</h3>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-200">Expires June 30, 2026</span>
+                </div>
+                <p className="text-emerald-100/90 text-sm leading-relaxed mb-3">
+                  Try every feature free during the beta. Paste this key into the app when prompted for a license.
+                </p>
+                <CopyCommand text={betaLicenseKey} border="border-emerald-500/30" />
+              </div>
+            </div>
+          </div>
+
           {/* License note */}
           <div role="alert" className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-6 text-left">
             <div className="flex items-start gap-4">
@@ -172,7 +196,7 @@ export default function JobHunterPage() {
                 <pre className="mb-3 rounded-lg bg-black/40 border border-amber-500/30 p-3 overflow-x-auto text-xs text-amber-100"><code>job-hunter setup     # check detected AI CLIs + data dir
 job-hunter serve     # open the web app</code></pre>
                 <p className="text-amber-100/70 text-xs leading-relaxed">
-                  Features are gated behind a license key. Don&apos;t have one yet? <a href="mailto:masnun@gmail.com?subject=Job%20Hunter%20license" className="underline hover:text-amber-100">Request access</a>.
+                  Features are gated behind a license key. Use the free beta key above, or <a href="mailto:masnun@gmail.com?subject=Job%20Hunter%20license" className="underline hover:text-amber-100">request a longer license</a>.
                 </p>
               </div>
             </div>

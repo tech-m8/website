@@ -135,23 +135,6 @@ export default function JobHunterPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="relative pb-20 md:pb-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-10 text-center">
-            What it <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">does</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
-                <h3 className="font-bold text-white text-lg mb-2">{f.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Downloads */}
       <section id="downloads" className="relative pb-20 md:pb-24 scroll-mt-24">
         <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2" />
@@ -197,26 +180,80 @@ export default function JobHunterPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* License note */}
-          <div role="alert" className="rounded-2xl border border-amber-500/40 bg-amber-500/10 p-6 text-left">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
-                <svg className="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-                </svg>
+      {/* Quick start */}
+      <section id="quickstart" className="relative pb-20 md:pb-24 scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Quick <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">start</span>
+            </h2>
+            <p className="text-gray-400 text-sm">Up and running in five steps — everything else lives in the local web app.</p>
+          </div>
+          <ol className="space-y-3">
+            {[
+              { t: 'Install', d: <>Run the one-liner above for your OS to drop the <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">job-hunter</code> binary on your PATH.</> },
+              { t: 'Launch the app', d: <>Run <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">job-hunter</code> and open <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">http://127.0.0.1:7777</code>.</> },
+              { t: 'Activate', d: <>Paste the free beta key when prompted to unlock every feature.</> },
+              { t: 'Pick your AI', d: <>In Settings, sign in to a local CLI (Claude, Gemini, Codex) or add a cloud API key — it&rsquo;s tested with a live call before saving.</> },
+              { t: 'Add your profile, then a job', d: <>Drop in your CV and writing samples, capture a posting with the Chrome extension or a URL, and generate a tailored draft in your voice.</> },
+            ].map((s, i) => (
+              <li key={s.t} className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-5">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-violet-500/25">
+                  {i + 1}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-white text-sm mb-0.5">{s.t}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{s.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="text-center mt-8">
+            <a href="#tutorial" className="inline-flex items-center gap-1 text-violet-300 hover:text-violet-200 text-sm font-medium">
+              See each step in detail
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Support box */}
+          <div id="support" className="mt-10 rounded-2xl border border-violet-500/30 bg-violet-500/10 p-6 md:p-8 text-center scroll-mt-24">
+            <p className="text-gray-200 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-5">
+              Are you having issues installing or getting it up? Did you find a bug? Please report to us.
+            </p>
+            <a
+              href="https://wa.me/8801410960803"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contact support on WhatsApp"
+              className="inline-flex items-center gap-2.5 bg-violet-500 hover:bg-violet-400 text-white px-7 py-3.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-violet-500/40 hover:-translate-y-0.5"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.57c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z" />
+              </svg>
+              WhatsApp +8801410960803
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="relative pb-20 md:pb-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-10 text-center">
+            What it <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">does</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f) => (
+              <div key={f.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all">
+                <h3 className="font-bold text-white text-lg mb-2">{f.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
               </div>
-              <div className="flex-1">
-                <h3 className="text-amber-200 font-bold text-base mb-2">After installing</h3>
-                <p className="text-amber-100/90 text-sm leading-relaxed mb-2">
-                  Start the app, then open <code className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-100">http://127.0.0.1:7777</code>:
-                </p>
-                <pre className="mb-3 rounded-lg bg-black/40 border border-amber-500/30 p-3 overflow-x-auto text-xs text-amber-100"><code>job-hunter     # open the web app</code></pre>
-                <p className="text-amber-100/70 text-xs leading-relaxed">
-                  Features are gated behind a license key. Use the free beta key above, or <a href="mailto:masnun@gmail.com?subject=Job%20Hunter%20license" className="underline hover:text-amber-100">request a longer license</a>.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -289,27 +326,6 @@ export default function JobHunterPage() {
         </div>
       </section>
 
-      {/* Support */}
-      <section id="support" className="relative pb-20 md:pb-28 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Need <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">help</span>?
-          </h2>
-          <p className="text-gray-400 text-sm mb-7">Questions about install or licenses — message us on WhatsApp.</p>
-          <a
-            href="https://wa.me/8801410960803"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Support on WhatsApp"
-            className="inline-flex items-center gap-2.5 bg-violet-500 hover:bg-violet-400 text-white px-7 py-3.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-violet-500/40 hover:-translate-y-0.5"
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.57c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z" />
-            </svg>
-            Support
-          </a>
-        </div>
-      </section>
     </div>
   );
 }

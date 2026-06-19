@@ -117,8 +117,7 @@ cat <<EOF
 
 job-hunter $VERSION installed. Next:
 
-  job-hunter setup     # check detected AI CLIs + data dir
-  job-hunter serve     # open the web app at http://127.0.0.1:7777
+  job-hunter           # open the web app at http://127.0.0.1:7777
 
 Paste your license key on the activation screen to unlock features.
 Need one? Email masnun@gmail.com (subject: Job Hunter license).

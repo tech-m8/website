@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import CopyCommand from '@/components/CopyCommand';
+import { changelog, latestVersion } from '@/lib/changelog';
 
 export const metadata = {
   title: 'Job Hunter — AI Job-Hunting Agent | TechM8',
@@ -108,9 +109,18 @@ export default function JobHunterPage() {
             </svg>
             All products
           </Link>
-          <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium px-4 py-2 rounded-full mb-8">
-            <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
-            macOS · Linux · Windows · Local-first
+          <div className="flex items-center justify-center gap-3 flex-wrap mb-8">
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium px-4 py-2 rounded-full">
+              <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
+              macOS · Linux · Windows · Local-first
+            </div>
+            <Link
+              href="/products/job-hunter/changelog"
+              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white text-xs font-medium px-4 py-2 rounded-full transition-all"
+            >
+              {latestVersion}
+              <span className="text-gray-500">· What&rsquo;s new</span>
+            </Link>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Job Hunter</span>
@@ -179,6 +189,42 @@ export default function JobHunterPage() {
                 <CopyCommand text={betaLicenseKey} border="border-emerald-500/30" />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest release */}
+      <section id="whats-new" className="relative pb-20 md:pb-24 scroll-mt-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+            <div className="flex items-center justify-between gap-3 flex-wrap mb-5">
+              <div className="flex items-center gap-3 flex-wrap">
+                <h2 className="text-xl md:text-2xl font-bold text-white">What&rsquo;s new</h2>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-500/20 border border-violet-500/40 text-violet-200">
+                  {changelog[0].version}
+                </span>
+                <span className="text-xs text-gray-500">{changelog[0].date}</span>
+              </div>
+              <Link
+                href="/products/job-hunter/changelog"
+                className="inline-flex items-center gap-1 text-violet-300 hover:text-violet-200 text-sm font-medium"
+              >
+                Full changelog
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <ul className="space-y-2.5">
+              {changelog[0].changes.map((c, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-gray-300 text-sm leading-relaxed">
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

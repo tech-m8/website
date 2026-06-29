@@ -153,7 +153,7 @@ export default function JobHunterPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
               Get <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">Job Hunter</span>
             </h2>
-            <p className="text-gray-400 text-sm">One command installs the binary. Then activate it with your license key.</p>
+            <p className="text-gray-400 text-sm">One command installs Job Hunter. Then activate it with your license key.</p>
           </div>
 
           {/* Primary install — one-liners */}
@@ -161,7 +161,7 @@ export default function JobHunterPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
               <CopyCommand text={installCmdUnix} />
-              <p className="text-gray-500 text-xs mt-3">Detects your CPU, verifies the checksum, installs to your PATH, and clears the macOS quarantine flag automatically.</p>
+              <p className="text-gray-500 text-xs mt-3">Detects your OS and CPU and verifies the checksum. macOS installs the native app to your Applications folder; Linux installs the CLI to your PATH — the macOS quarantine flag is cleared automatically.</p>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">Windows (PowerShell)</div>

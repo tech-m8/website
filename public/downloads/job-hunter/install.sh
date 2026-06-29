@@ -5,14 +5,19 @@
 #   curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh
 #
 # Detects your OS/arch, downloads the matching archive, verifies its sha256
-# against the published checksums file (fails closed on mismatch), and installs
-# the binary onto your PATH. On macOS it strips the Gatekeeper quarantine flag
-# so the unsigned binary runs without the "cannot be opened" prompt.
+# against the published checksums file (fails closed on mismatch), and installs.
+#
+#   macOS  -> the native JobHunter.app bundle into /Applications
+#   Linux  -> the job-hunter CLI binary onto your PATH
+#
+# Either way it strips the Gatekeeper quarantine flag so the unsigned artifact
+# runs without the "cannot be opened" prompt.
 #
 # Overridable via env:
 #   BASE_URL   where to fetch artifacts from (default: the tech-m8 site)
 #   VERSION    which version to install      (default: latest)
-#   BIN_DIR    install directory             (default: /usr/local/bin or ~/.local/bin)
+#   BIN_DIR    Linux install directory       (default: /usr/local/bin or ~/.local/bin)
+#   APP_DIR    macOS install directory       (default: /Applications or ~/Applications)
 
 set -eu
 
@@ -60,7 +65,13 @@ if [ "$VERSION" = "latest" ]; then
   fi
 fi
 
-archive="job-hunter_${VERSION}_${os}_${arch}.tar.gz"
+# macOS ships one universal .app bundle (arm64+amd64) as a zip; Linux ships a
+# per-arch CLI tarball.
+if [ "$os" = "darwin" ]; then
+  archive="JobHunter_${VERSION}_macos_universal.zip"
+else
+  archive="job-hunter_${VERSION}_${os}_${arch}.tar.gz"
+fi
 checksums="job-hunter_${VERSION}_checksums.txt"
 
 info "installing job-hunter $VERSION ($os/$arch)"
@@ -84,15 +95,47 @@ fi
 [ "$expected" = "$actual" ] || err "checksum mismatch — aborting (expected $expected, got $actual)"
 info "checksum ok"
 
-# --- unpack ----------------------------------------------------------------
+if [ "$os" = "darwin" ]; then
+  # --- macOS: install the JobHunter.app bundle -----------------------------
+  command -v unzip >/dev/null 2>&1 || err "need unzip to install the macOS app"
+  unzip -q "$tmp/$archive" -d "$tmp/extract"
+  [ -d "$tmp/extract/JobHunter.app" ] || err "archive did not contain JobHunter.app"
+
+  # strip quarantine off the whole bundle so the unsigned app launches cleanly.
+  if command -v xattr >/dev/null 2>&1; then
+    xattr -dr com.apple.quarantine "$tmp/extract/JobHunter.app" 2>/dev/null || true
+  fi
+
+  if [ -n "${APP_DIR:-}" ]; then
+    :
+  elif [ -w /Applications ] 2>/dev/null; then
+    APP_DIR="/Applications"
+  else
+    APP_DIR="$HOME/Applications"
+  fi
+  mkdir -p "$APP_DIR"
+
+  # replace any prior install so we never merge stale files into the bundle.
+  rm -rf "$APP_DIR/JobHunter.app"
+  mv "$tmp/extract/JobHunter.app" "$APP_DIR/JobHunter.app"
+  info "installed to $APP_DIR/JobHunter.app"
+
+  cat <<EOF
+
+JobHunter $VERSION installed. Next:
+
+  open "$APP_DIR/JobHunter.app"     # or launch it from Launchpad / Spotlight
+
+Paste your license key on the activation screen to unlock features.
+Need one? Email masnun@gmail.com (subject: Job Hunter license).
+EOF
+  exit 0
+fi
+
+# --- Linux: install the CLI binary -----------------------------------------
 tar -xzf "$tmp/$archive" -C "$tmp"
 [ -f "$tmp/job-hunter" ] || err "archive did not contain a job-hunter binary"
 chmod +x "$tmp/job-hunter"
-
-# strip macOS quarantine so the unsigned binary launches cleanly.
-if [ "$os" = "darwin" ] && command -v xattr >/dev/null 2>&1; then
-  xattr -d com.apple.quarantine "$tmp/job-hunter" 2>/dev/null || true
-fi
 
 # --- choose install dir ----------------------------------------------------
 if [ -n "${BIN_DIR:-}" ]; then

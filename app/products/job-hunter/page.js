@@ -86,8 +86,8 @@ const steps = [
 const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
 
-// Beta tester license key — valid through June 30, 2026.
-const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wNy0wMVQwNDowOTozNy45ODg1MzdaIn0.5NtqCmeWIPiRz2A66puwVrSz07WLVhGra94GLiaPhiTZBOkmaha32AdzflqMlKUmmQUaFQF2WGsgDNuwIQTzBg`;
+// Beta tester license key — valid through August 30, 2026.
+const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0zMFQwODo1MDozOC44ODg3NTFaIn0.9raqLqOEf5Cqjkz02GgcMWU0EJPiqwtO0u1BUt_p-rzfGFpLNHdrGq-wXutdckifq7NHMK1VizTYTs2Z2_TUDQ`;
 
 export default function JobHunterPage() {
   return (
@@ -146,7 +146,7 @@ export default function JobHunterPage() {
       </section>
 
       {/* Downloads */}
-      <section id="downloads" className="relative pb-20 md:pb-24 scroll-mt-24">
+      <section id="downloads" className="relative overflow-hidden pb-20 md:pb-24 scroll-mt-24">
         <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2" />
         <div className="relative max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
@@ -181,7 +181,7 @@ export default function JobHunterPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <h3 className="text-emerald-200 font-bold text-base">Free beta tester key</h3>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-200">Expires June 30, 2026</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-200">Expires August 30, 2026</span>
                 </div>
                 <p className="text-emerald-100/90 text-sm leading-relaxed mb-3">
                   Try every feature free during the beta. Paste this key into the app when prompted for a license.

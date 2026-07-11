@@ -60,7 +60,7 @@ const downloads = [
     platform: 'Android',
     name: 'Square Frame APK',
     desc: 'Install on Android 10+ (API 29) phones. Sideload via the APK.',
-    href: '/downloads/square-frame.apk',
+    href: 'https://dl.tech-m8.solutions/square-frame.apk',
     filename: 'square-frame.apk',
     icon: (
       <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">

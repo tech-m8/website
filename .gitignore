@@ -43,3 +43,12 @@ next-env.d.ts
 # Claude
 CLAUDE.md
 AGENTS.md
+
+# Release artifacts — hosted on Cloudflare R2 (dl.tech-m8.solutions), not git/Pages.
+# Hand-written install.sh / install.ps1 stay tracked.
+public/downloads/**/*.apk
+public/downloads/**/*.zip
+public/downloads/**/*.tar.gz
+public/downloads/**/*.sha256
+public/downloads/**/*_checksums.txt
+public/downloads/job-hunter/VERSION

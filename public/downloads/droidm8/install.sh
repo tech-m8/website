@@ -16,7 +16,7 @@
 
 set -eu
 
-BASE_URL="${BASE_URL:-https://tech-m8.solutions/downloads}"
+BASE_URL="${BASE_URL:-https://dl.tech-m8.solutions}"
 ARCHIVE="DroidM8-mac.tar.gz"
 APP_NAME="Droid M8.app"
 

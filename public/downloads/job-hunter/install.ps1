@@ -12,7 +12,7 @@
 
 $ErrorActionPreference = 'Stop'
 
-$BaseUrl = if ($env:BASE_URL) { $env:BASE_URL } else { 'https://tech-m8.solutions/downloads/job-hunter' }
+$BaseUrl = if ($env:BASE_URL) { $env:BASE_URL } else { 'https://dl.tech-m8.solutions/job-hunter' }
 $Version = if ($env:VERSION)  { $env:VERSION }  else { 'latest' }
 
 function Fail($msg) { Write-Error "install: $msg"; exit 1 }

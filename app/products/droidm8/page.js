@@ -99,7 +99,7 @@ const downloads = [
     platform: 'Android',
     name: 'DroidM8 APK',
     desc: 'Install on Android 9+ phones. Sideload via the APK. Signed release build — if you installed an earlier test build, uninstall it first (different signature).',
-    href: '/downloads/droidm8.apk',
+    href: 'https://dl.tech-m8.solutions/droidm8.apk',
     filename: 'droidm8.apk',
     icon: (
       <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
@@ -203,7 +203,7 @@ export default function DroidM8Page() {
                   No Gatekeeper warning: a <code className="px-1 py-0.5 rounded bg-white/10 text-violet-100">curl</code> download isn’t quarantined the way a browser download is, so the app — though not signed with an Apple Developer ID — launches without the “Apple could not verify…” block.
                 </p>
                 <p className="text-gray-500 text-xs leading-relaxed mt-2">
-                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="/downloads/DroidM8-mac.tar.gz.sha256" className="underline hover:text-violet-200">SHA-256 checksum</a>
+                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="https://dl.tech-m8.solutions/DroidM8-mac.tar.gz.sha256" className="underline hover:text-violet-200">SHA-256 checksum</a>
                 </p>
               </div>
             </div>

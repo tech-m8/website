@@ -1,10 +1,30 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import CopyCommand from '@/components/CopyCommand';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata = {
   title: 'DroidM8 — Bridge Android & Mac | TechM8',
   description: 'DroidM8 mirrors Android notifications and syncs clipboard with macOS over your local network. Setup walkthrough, screenshots, and downloads for both apps.',
+  alternates: { canonical: '/products/droidm8' },
+  openGraph: {
+    title: 'DroidM8 — Bridge Android & Mac | TechM8',
+    description: 'Mirror Android notifications and sync clipboard with macOS over your local network only. No cloud, no account.',
+    url: 'https://tech-m8.solutions/products/droidm8',
+  },
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'DroidM8',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Android, macOS',
+  url: 'https://tech-m8.solutions/products/droidm8',
+  description:
+    'Mirrors Android notifications and syncs clipboard with macOS over your local network only. No cloud, no account.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'TechM8' },
 };
 
 const features = [
@@ -114,6 +134,7 @@ const MAC_INSTALL_CMD = 'curl -fsSL https://tech-m8.solutions/downloads/droidm8/
 export default function DroidM8Page() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
+      <JsonLd data={softwareSchema} />
       {/* Hero */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute top-0 left-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

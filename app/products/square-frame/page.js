@@ -1,9 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata = {
   title: 'Square Frame — No-Crop Photo Borders | TechM8',
   description: 'Square Frame pads your photos onto a clean white square — never cropped — with a thin black frame and soft shadow, then saves or shares square JPEGs. Batch a whole shoot, or frame your latest shots in one tap from the home-screen widget. On-device, no account, no cloud.',
+  alternates: { canonical: '/products/square-frame' },
+  openGraph: {
+    title: 'Square Frame — No-Crop Photo Borders | TechM8',
+    description: 'Pad photos onto a clean white square — never cropped — with a thin black frame and soft shadow. Batch a shoot or frame from a home-screen widget. On-device, no account, no cloud.',
+    url: 'https://tech-m8.solutions/products/square-frame',
+  },
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Square Frame',
+  applicationCategory: 'PhotographyApplication',
+  operatingSystem: 'Android',
+  url: 'https://tech-m8.solutions/products/square-frame',
+  description:
+    'Pads photos onto a clean white square — never cropped — with a thin black frame and soft shadow, then saves or shares square JPEGs. On-device, no account, no cloud.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'TechM8' },
 };
 
 const features = [
@@ -73,6 +93,7 @@ const downloads = [
 export default function SquareFramePage() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
+      <JsonLd data={softwareSchema} />
       {/* Hero */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute top-0 left-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

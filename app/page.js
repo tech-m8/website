@@ -4,6 +4,13 @@ export const metadata = {
   title: "TechM8 | Transform Your Ideas Into Digital Products",
   description:
     "TechM8 is a software agency helping businesses build digital products.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "TechM8 | Transform Your Ideas Into Digital Products",
+    description:
+      "TechM8 is a software agency helping businesses build digital products.",
+    url: "https://tech-m8.solutions",
+  },
 };
 
 const features = [

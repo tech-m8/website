@@ -1,6 +1,12 @@
 export const metadata = {
   title: 'Our Services | TechM8',
   description: 'Explore our wide range of software and digital services.',
+  alternates: { canonical: '/service' },
+  openGraph: {
+    title: 'Our Services | TechM8',
+    description: 'Explore our wide range of software and digital services.',
+    url: 'https://tech-m8.solutions/service',
+  },
 };
 
 const services = [

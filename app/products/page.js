@@ -3,6 +3,12 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Our Products | TechM8',
   description: 'Apps and tools built by TechM8.',
+  alternates: { canonical: '/products' },
+  openGraph: {
+    title: 'Our Products | TechM8',
+    description: 'Apps and tools built by TechM8.',
+    url: 'https://tech-m8.solutions/products',
+  },
 };
 
 const products = [

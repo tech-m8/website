@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { members } from '@/lib/team';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
 
 export function generateStaticParams() {
   return members.map((m) => ({ slug: m.slug }));
@@ -10,9 +11,17 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const member = members.find((m) => m.slug === slug);
   if (!member) return {};
+  const description = member.bio.split('\n')[0];
   return {
     title: `${member.name} | TechM8 Team`,
-    description: member.bio.split('\n')[0],
+    description,
+    alternates: { canonical: `/team/${slug}` },
+    openGraph: {
+      type: 'profile',
+      title: `${member.name} | TechM8 Team`,
+      description,
+      url: `https://tech-m8.solutions/team/${slug}`,
+    },
   };
 }
 
@@ -23,8 +32,22 @@ export default async function MemberProfile({ params }) {
 
   const paragraphs = member.bio.split('\n').filter(Boolean);
 
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: member.name,
+    jobTitle: member.role,
+    description: paragraphs[0],
+    url: `https://tech-m8.solutions/team/${member.slug}`,
+    ...(member.photo
+      ? { image: `https://tech-m8.solutions${member.photo}` }
+      : {}),
+    worksFor: { '@type': 'Organization', name: 'TechM8', url: 'https://tech-m8.solutions' },
+  };
+
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
+      <JsonLd data={personSchema} />
       <div className="fixed top-0 left-0 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
       <div className="fixed bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none" />
       <div className="fixed inset-0 opacity-5 pointer-events-none"

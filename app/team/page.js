@@ -4,6 +4,12 @@ import { members } from '@/lib/team';
 export const metadata = {
   title: 'Our Team | TechM8',
   description: 'Meet the talented team behind TechM8.',
+  alternates: { canonical: '/team' },
+  openGraph: {
+    title: 'Our Team | TechM8',
+    description: 'Meet the talented team behind TechM8.',
+    url: 'https://tech-m8.solutions/team',
+  },
 };
 
 export default function TeamPage() {

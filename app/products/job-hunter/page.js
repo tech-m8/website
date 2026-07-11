@@ -1,11 +1,31 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import CopyCommand from '@/components/CopyCommand';
+import JsonLd from '@/components/JsonLd';
 import { changelog, latestVersion } from '@/lib/changelog';
 
 export const metadata = {
   title: 'Job Hunter — AI Job-Hunting Agent | TechM8',
   description: 'Job Hunter is a local-first AI job-hunting agent. It researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your own voice — every claim fact-checked. Run it on your own AI CLIs (Claude, Gemini, Codex) or your own cloud API keys (Anthropic, Gemini, OpenAI). All data stays on your machine.',
+  alternates: { canonical: '/products/job-hunter' },
+  openGraph: {
+    title: 'Job Hunter — AI Job-Hunting Agent | TechM8',
+    description: 'Local-first AI job-hunting agent: scores your honest fit and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs or API keys.',
+    url: 'https://tech-m8.solutions/products/job-hunter',
+  },
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Job Hunter',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'macOS, Linux, Windows',
+  url: 'https://tech-m8.solutions/products/job-hunter',
+  description:
+    'Local-first AI job-hunting agent that scores your honest fit and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs or cloud API keys.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'TechM8' },
 };
 
 const features = [
@@ -92,6 +112,7 @@ const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyN
 export default function JobHunterPage() {
   return (
     <div className="bg-gradient-to-br from-slate-900 via-violet-950 to-slate-900 min-h-screen">
+      <JsonLd data={softwareSchema} />
       {/* Hero */}
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute top-0 left-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

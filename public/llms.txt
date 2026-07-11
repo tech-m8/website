@@ -1,0 +1,26 @@
+# TechM8
+
+> TechM8 is a software studio that builds custom digital products and ships its own local-first, privacy-focused apps. We do web, mobile, e-commerce, custom software, and cloud work for clients, and publish tools that run on your own machine with no account and no cloud lock-in.
+
+Site: https://tech-m8.solutions
+Downloads (binaries): https://dl.tech-m8.solutions
+
+## Products
+
+- [Job Hunter](https://tech-m8.solutions/products/job-hunter): Local-first AI job-hunting agent. Researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs (Claude, Gemini, Codex) or your own cloud API keys (Anthropic, Gemini, OpenAI). All data stays on your machine. macOS, Linux, Windows.
+- [DroidM8](https://tech-m8.solutions/products/droidm8): Bridges Android and Mac — mirrors Android notifications and syncs clipboard with macOS over your local network only. Includes DND-bypass rules and noisy-app suppression. Android + macOS apps.
+- [Square Frame](https://tech-m8.solutions/products/square-frame): Pads photos onto a clean white square — never cropped — with a thin black frame and soft shadow, then saves or shares square JPEGs. Batch a shoot or frame shots from a home-screen widget. On-device, no account, no cloud. Android.
+
+## Services
+
+- [Services overview](https://tech-m8.solutions/service): Web development, mobile app development, e-commerce development, custom software, cloud solutions, and website maintenance.
+
+## Company
+
+- [Team](https://tech-m8.solutions/team): Founded by Abu Ashraf Masnun, with a team of software engineers.
+
+## Notes
+
+- Product apps are local-first and privacy-focused: data stays on the user's device; no accounts required.
+- Release binaries (APKs, macOS/Linux/Windows archives) are hosted on Cloudflare R2 at dl.tech-m8.solutions.
+- Install scripts: `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh` (macOS/Linux) and `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex` (Windows).

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import CopyCommand from '@/components/CopyCommand';
 import JsonLd from '@/components/JsonLd';
@@ -59,50 +58,6 @@ const features = [
   },
 ];
 
-const steps = [
-  {
-    title: 'Install and run',
-    body: 'Download the binary, run ./job-hunter, and open http://127.0.0.1:7777 in your browser. Everything happens in the local web app — pick your AI tools, add a license, and check detected CLIs right from the UI.',
-    images: [],
-    cta: { href: '#downloads', label: 'Jump to download' },
-  },
-  {
-    title: 'Pick your AI — CLIs or API keys',
-    body: 'Job Hunter routes each task to an AI of your choice. Sign in to your local Claude, Gemini, or Codex CLI, or paste a cloud API key for Anthropic, Gemini, or OpenAI — each key is checked with a live test call before it’s saved. Set a primary tool and fallbacks per task; a bundled local model covers you if everything else is unavailable.',
-    images: [
-      { src: '/screenshots/job-hunter-keys.png', alt: 'Job Hunter Settings showing local CLIs alongside cloud API-key providers and the per-provider key validation modal', w: 1600, h: 1000 },
-    ],
-  },
-  {
-    title: 'Build your profile and voice',
-    body: 'Drop in your CV, portfolio docs, and writing samples as PDFs or plain text. Job Hunter builds a candidate dossier and a voice fingerprint, then runs an authenticity check so generated drafts sound like you — not like a template.',
-    images: [
-      { src: '/screenshots/job-hunter-profile.png', alt: 'Job Hunter Profile view with the candidate dossier and voice studio', w: 1600, h: 1000 },
-    ],
-  },
-  {
-    title: 'Capture jobs in one click',
-    body: 'Paste a job URL, or use the companion Chrome extension to send a posting from any job board in one click. Job Hunter parses each role and lines them up with a fit score, so you can see at a glance what’s worth pursuing.',
-    images: [
-      { src: '/screenshots/job-hunter-jobs.png', alt: 'Job Hunter Jobs list with fit scores and the one-click Chrome extension capture link', w: 1600, h: 1000 },
-    ],
-  },
-  {
-    title: 'See your honest match',
-    body: 'Open a role to see your real fit, scored out of 100 with the reasoning shown — the must-haves you meet, the ones you miss, and a gap coach that tells you how to close them rather than papering over them. Ask the built-in assistant anything about the role and your fit.',
-    images: [
-      { src: '/screenshots/job-hunter-match.png', alt: 'Job Hunter job view showing an honest fit score with its reasoning and a gap coach', w: 1600, h: 1000 },
-    ],
-  },
-  {
-    title: 'Generate in your voice',
-    body: 'Produce a tailored cover letter, email, or CV in your own writing voice. The truthfulness guard fact-checks every claim against your dossier, and you can spin multiple A/B angles before exporting a versioned draft to PDF.',
-    images: [
-      { src: '/screenshots/job-hunter-generate.png', alt: 'Job Hunter generation view with a tailored cover letter and truthfulness check', w: 1600, h: 1000 },
-    ],
-  },
-];
-
 const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
 
@@ -155,12 +110,6 @@ export default function JobHunterPage() {
               className="inline-block bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-8 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
             >
               Get Job Hunter
-            </a>
-            <a
-              href="#tutorial"
-              className="inline-block bg-white/5 hover:bg-white/10 border border-white/10 text-gray-200 px-8 py-3 rounded-lg text-sm font-semibold transition-all"
-            >
-              How it works
             </a>
           </div>
         </div>
@@ -278,14 +227,6 @@ export default function JobHunterPage() {
               </li>
             ))}
           </ol>
-          <div className="text-center mt-8">
-            <a href="#tutorial" className="inline-flex items-center gap-1 text-violet-300 hover:text-violet-200 text-sm font-medium">
-              See each step in detail
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
-          </div>
 
           {/* Support box */}
           <div id="support" className="mt-10 rounded-2xl border border-violet-500/30 bg-violet-500/10 p-6 md:p-8 text-center scroll-mt-24">
@@ -322,74 +263,6 @@ export default function JobHunterPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Tutorial */}
-      <section id="tutorial" className="relative pb-20 md:pb-28 scroll-mt-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              How it <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">works</span>
-            </h2>
-            <p className="text-gray-400 text-sm">From install to a tailored application, step by step.</p>
-          </div>
-          <ol className="space-y-12">
-            {steps.map((step, i) => (
-              <li
-                key={step.title}
-                className={`grid grid-cols-1 md:grid-cols-12 gap-8 items-center ${
-                  i % 2 === 1 ? 'md:[&>div:first-child]:order-2' : ''
-                }`}
-              >
-                <div className="md:col-span-5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-violet-500/25">
-                      {i + 1}
-                    </span>
-                    <h3 className="text-xl font-bold text-white">{step.title}</h3>
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{step.body}</p>
-                  {step.cta && (
-                    <a
-                      href={step.cta.href}
-                      className="inline-flex items-center gap-1 mt-4 text-violet-300 hover:text-violet-200 text-sm font-medium"
-                    >
-                      {step.cta.label}
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-                <div className="md:col-span-7">
-                  {step.images.length > 0 && (
-                    <div className={`flex flex-wrap gap-4 justify-center ${step.images.length === 1 ? 'md:justify-end' : ''}`}>
-                      {step.images.map((img) => {
-                        const isPhone = img.h > img.w;
-                        return (
-                          <div
-                            key={img.src}
-                            className={`bg-white/5 border border-white/10 rounded-2xl p-2 shadow-2xl shadow-black/40 ${
-                              isPhone ? 'max-w-[200px]' : 'max-w-[520px] flex-1'
-                            }`}
-                          >
-                            <Image
-                              src={img.src}
-                              alt={img.alt}
-                              width={img.w}
-                              height={img.h}
-                              className="rounded-xl w-full h-auto"
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 

@@ -61,6 +61,9 @@ const features = [
 const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
 
+// Uninstall (macOS & Linux). Keeps ~/.job-hunter by default; --purge wipes it.
+const uninstallCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/uninstall.sh | sh`;
+
 // Beta tester license key — valid through August 30, 2026.
 const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0zMFQwODo1MDozOC44ODg3NTFaIn0.9raqLqOEf5Cqjkz02GgcMWU0EJPiqwtO0u1BUt_p-rzfGFpLNHdrGq-wXutdckifq7NHMK1VizTYTs2Z2_TUDQ`;
 
@@ -160,6 +163,23 @@ export default function JobHunterPage() {
               </div>
             </div>
           </div>
+
+          {/* Uninstall — quiet, collapsed by default */}
+          <details className="group rounded-2xl border border-white/10 bg-white/5 px-6 py-4">
+            <summary className="flex items-center justify-between gap-3 cursor-pointer list-none text-sm text-gray-300 hover:text-white">
+              <span className="font-medium">Uninstall Job Hunter</span>
+              <svg className="w-4 h-4 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="mt-4">
+              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
+              <CopyCommand text={uninstallCmdUnix} />
+              <p className="text-gray-500 text-xs mt-3">
+                Removes the app and its background engine. Your profile, job history, and license in <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">~/.job-hunter</code> are kept, so reinstalling stays activated — end the command with <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">| sh -s -- --purge</code> to delete those too. On Windows, remove <span className="text-gray-400">Job Hunter</span>{' '}from Settings &rarr; Installed apps.
+              </p>
+            </div>
+          </details>
         </div>
       </section>
 

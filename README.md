@@ -32,17 +32,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy
 
 The site is a static export (`output: 'export'` in `next.config.mjs`) hosted on
-**GitHub Pages**. Deploys are automatic: pushing to `main` triggers
-`.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and
-publishes the generated `out/` directory to Pages via
-[`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages).
-
-There is no manual deploy step — just merge to `main`.
+**Cloudflare Pages** (project `techm8-website`, serving `tech-m8.solutions`).
+Deploys are automatic via Cloudflare's Git integration: pushing to `main`
+triggers a Pages build that runs `npm ci && npm run build` and publishes the
+generated `out/` directory. There is no GitHub Actions workflow and no manual
+deploy step — just merge to `main`.
 
 ### Publishing downloads
 
-Release archives live under `public/downloads/`, served as static assets (e.g.
-`public/downloads/job-hunter/`). To ship a new product version: drop the new
-archives + checksums there, bump that product's `VERSION` file, and push — the
-Pages build copies `public/` into `out/` as-is. Installers resolve the current
-release from the `VERSION` file, so no code change is needed.
+Only the **install scripts** live in the repo
+(`public/downloads/<product>/install.sh` and `install.ps1`), served as static
+assets by Pages. The release **archives** themselves — CLI tarballs, the
+macOS/Windows app zips, the per-product `VERSION` file, and the `checksums.txt`
+— are hosted on **Cloudflare R2** at `dl.tech-m8.solutions` (bucket
+`techm8-downloads`, one prefix per product, e.g. `job-hunter/`), not in git or
+Pages.
+
+To ship a new product version, upload the archives + checksums to R2 and bump
+that product's `VERSION` file there — installers resolve the current release
+from `<base>/VERSION`, so no website change is needed unless an installer script
+itself changes. Upload with wrangler (after `wrangler login`), e.g.:
+
+```sh
+wrangler r2 object put techm8-downloads/job-hunter/JobHunter_<ver>_windows_x64.zip \
+  --file JobHunter_<ver>_windows_x64.zip --content-type application/zip --remote
+```

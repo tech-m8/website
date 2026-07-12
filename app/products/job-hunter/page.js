@@ -219,37 +219,10 @@ export default function JobHunterPage() {
         </div>
       </section>
 
-      {/* Quick start */}
-      <section id="quickstart" className="relative pb-20 md:pb-24 scroll-mt-24">
+      {/* Support */}
+      <section id="support" className="relative pb-20 md:pb-24 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              Quick <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">start</span>
-            </h2>
-            <p className="text-gray-400 text-sm">Up and running in five steps — everything else lives in the local web app.</p>
-          </div>
-          <ol className="space-y-3">
-            {[
-              { t: 'Install', d: <>Run the one-liner above for your OS to drop the <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">job-hunter</code> binary on your PATH.</> },
-              { t: 'Launch the app', d: <>Run <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">job-hunter</code> and open <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">http://127.0.0.1:7777</code>.</> },
-              { t: 'Activate', d: <>Paste the free beta key when prompted to unlock every feature.</> },
-              { t: 'Pick your AI', d: <>In Settings, sign in to a local CLI (Claude, Gemini, Codex) or add a cloud API key — it&rsquo;s tested with a live call before saving.</> },
-              { t: 'Add your profile, then a job', d: <>Drop in your CV and writing samples, capture a posting with the Chrome extension or a URL, and generate a tailored draft in your voice.</> },
-            ].map((s, i) => (
-              <li key={s.t} className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-5">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-violet-500/25">
-                  {i + 1}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-white text-sm mb-0.5">{s.t}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{s.d}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          {/* Support box */}
-          <div id="support" className="mt-10 rounded-2xl border border-violet-500/30 bg-violet-500/10 p-6 md:p-8 text-center scroll-mt-24">
+          <div className="rounded-2xl border border-violet-500/30 bg-violet-500/10 p-6 md:p-8 text-center">
             <p className="text-gray-200 text-sm md:text-base leading-relaxed max-w-xl mx-auto mb-5">
               Are you having issues installing or getting it up? Did you find a bug? Please report to us.
             </p>

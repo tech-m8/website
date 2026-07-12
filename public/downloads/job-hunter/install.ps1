@@ -4,7 +4,8 @@
 #
 # Downloads the Windows desktop-app archive, verifies its sha256 against the
 # published checksums file (aborts on mismatch), installs the app under
-# %LOCALAPPDATA%\Programs\JobHunter, and adds a Start Menu shortcut. This mirrors
+# %LOCALAPPDATA%\Programs\JobHunter, adds Start Menu + Desktop shortcuts, and
+# registers an uninstall entry (Settings > Apps / Control Panel). This mirrors
 # the macOS installer, which drops the native JobHunter.app into /Applications.
 #
 # Overridable via env vars before piping to iex:
@@ -83,6 +84,49 @@ try {
     $lnk.Save()
   }
   Write-Host "==> added Start Menu and Desktop shortcuts"
+
+  # --- register uninstall (Settings > Apps / Control Panel) ---------------
+  # Drop a self-contained uninstaller beside the app; it re-launches itself from
+  # TEMP so it can delete its own install directory without locking it.
+  $uninstallPs1 = Join-Path $dest 'uninstall.ps1'
+  @'
+# uninstall.ps1 - remove Job Hunter (files, shortcuts, registry entry).
+$ErrorActionPreference = 'SilentlyContinue'
+$dest = Join-Path $env:LOCALAPPDATA 'Programs\JobHunter'
+# Re-launch from TEMP so we can delete $dest without locking this running script.
+if ($PSCommandPath -and $PSCommandPath.StartsWith($dest, [StringComparison]::OrdinalIgnoreCase)) {
+  $relocated = Join-Path $env:TEMP ('jobhunter-uninstall-' + [guid]::NewGuid().ToString() + '.ps1')
+  Copy-Item -LiteralPath $PSCommandPath -Destination $relocated -Force
+  Start-Process powershell -ArgumentList '-NoProfile','-WindowStyle','Hidden','-ExecutionPolicy','Bypass','-File',('"' + $relocated + '"')
+  return
+}
+Get-Process JobHunter,job-hunter -ErrorAction SilentlyContinue | Stop-Process -Force
+Start-Sleep -Milliseconds 700
+Remove-Item (Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\Job Hunter.lnk') -Force
+Remove-Item (Join-Path ([Environment]::GetFolderPath('Desktop')) 'Job Hunter.lnk') -Force
+Remove-Item 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\JobHunter' -Recurse -Force
+Remove-Item -Recurse -Force $dest
+'@ | Set-Content -Path $uninstallPs1 -Encoding ascii
+
+  $rk = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\JobHunter'
+  New-Item -Path $rk -Force | Out-Null
+  $sizeKb = [int](((Get-ChildItem $dest -Recurse -File | Measure-Object -Property Length -Sum).Sum) / 1024)
+  $uninstCmd = 'powershell -NoProfile -ExecutionPolicy Bypass -File "' + $uninstallPs1 + '"'
+  $props = @{
+    DisplayName          = 'Job Hunter'
+    DisplayVersion       = $Version.TrimStart('v')
+    Publisher            = 'Tech M8'
+    DisplayIcon          = $exe
+    InstallLocation      = $dest
+    UninstallString      = $uninstCmd
+    QuietUninstallString = $uninstCmd
+    URLInfoAbout         = 'https://tech-m8.solutions/products/job-hunter'
+  }
+  foreach ($k in $props.Keys) { New-ItemProperty -Path $rk -Name $k -Value $props[$k] -PropertyType String -Force | Out-Null }
+  New-ItemProperty -Path $rk -Name 'EstimatedSize' -Value $sizeKb -PropertyType DWord -Force | Out-Null
+  New-ItemProperty -Path $rk -Name 'NoModify' -Value 1 -PropertyType DWord -Force | Out-Null
+  New-ItemProperty -Path $rk -Name 'NoRepair' -Value 1 -PropertyType DWord -Force | Out-Null
+  Write-Host "==> registered uninstaller (Settings > Apps)"
 } finally {
   Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
 }

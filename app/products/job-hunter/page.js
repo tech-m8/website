@@ -187,7 +187,7 @@ export default function JobHunterPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">Windows (PowerShell)</div>
               <CopyCommand text={installCmdWin} />
-              <p className="text-gray-500 text-xs mt-3">Installs under your user profile and adds it to PATH. Windows SmartScreen may warn on the unsigned binary — choose &ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;.</p>
+              <p className="text-gray-500 text-xs mt-3">Installs the desktop app under your user profile and adds Start Menu &amp; Desktop shortcuts. Windows SmartScreen may warn on the unsigned app — choose &ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo;.</p>
             </div>
           </div>
 

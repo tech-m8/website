@@ -115,13 +115,18 @@ const steps = [
   },
 ];
 
+// The Android client is distributed exclusively through Google Play — no APK
+// sideload. The Play Store URL is constructed once the app is published; until
+// then this still renders correctly with the canonical applicationId.
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=techm8.droid';
+
 const downloads = [
   {
     platform: 'Android',
-    name: 'DroidM8 APK',
-    desc: 'Install on Android 9+ phones. Sideload via the APK. Signed release build — if you installed an earlier test build, uninstall it first (different signature).',
-    href: 'https://dl.tech-m8.solutions/droidm8/droidm8-android.apk',
-    filename: 'droidm8-android.apk',
+    name: 'Get it on Google Play',
+    desc: 'Install on Android 9+ phones via the Play Store. Auto-updates roll out as soon as we ship a new release — no manual re-installs.',
+    href: PLAY_STORE_URL,
+    filename: null,
     icon: (
       <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
         <path d="M17.523 15.341a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m-11.046 0a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m11.42-6.122l2.076-3.595a.42.42 0 00-.726-.42l-2.1 3.638A12.94 12.94 0 0012 7.5c-1.844 0-3.587.387-5.147 1.082L4.753 4.944a.42.42 0 00-.726.42l2.076 3.595C2.474 11.054 0 14.27 0 17.998h24c0-3.728-2.473-6.944-6.103-8.78" />
@@ -255,17 +260,16 @@ export default function DroidM8Page() {
                 <p className="text-gray-400 text-sm leading-relaxed mb-6">{d.desc}</p>
                 <a
                   href={d.href}
-                  download={d.filename}
+                  target={d.filename ? undefined : '_blank'}
+                  rel={d.filename ? undefined : 'noopener noreferrer'}
+                  download={d.filename ?? undefined}
                   className="mt-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-violet-500/25"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
                   </svg>
-                  Download
+                  {d.filename ? 'Download' : 'Open Play Store'}
                 </a>
-                <p className="text-gray-500 text-xs leading-relaxed mt-3">
-                  <a href={`https://dl.tech-m8.solutions/droidm8/droidm8_${droidm8LatestVersion}_checksums.txt`} className="underline hover:text-violet-200">SHA-256 checksum</a>
-                </p>
               </div>
             ))}
           </div>

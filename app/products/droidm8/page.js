@@ -118,7 +118,7 @@ const steps = [
 // The Android client is distributed exclusively through Google Play — no APK
 // sideload. The Play Store URL is constructed once the app is published; until
 // then this still renders correctly with the canonical applicationId.
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=techm8.droid';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=techm8.droidm8';
 
 const downloads = [
   {

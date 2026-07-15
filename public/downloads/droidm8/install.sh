@@ -31,7 +31,7 @@ err() { echo "install: $*" >&2; exit 1; }
 info() { echo "==> $*"; }
 
 # --- macOS only ------------------------------------------------------------
-[ "$(uname -s)" = "Darwin" ] || err "Droid M 8 for Mac runs on macOS only — for Android install from the Play Store: https://play.google.com/store/apps/details?id=techm8.droid"
+[ "$(uname -s)" = "Darwin" ] || err "Droid M 8 for Mac runs on macOS only — for Android install from the Play Store: https://play.google.com/store/apps/details?id=techm8.droidm8"
 
 # --- pick a downloader -----------------------------------------------------
 if command -v curl >/dev/null 2>&1; then

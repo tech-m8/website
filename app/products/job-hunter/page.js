@@ -134,7 +134,7 @@ export default function JobHunterPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
               <CopyCommand text={installCmdUnix} />
-              <p className="text-gray-500 text-xs mt-3">Detects your OS and CPU and verifies the checksum. macOS installs the native app to your Applications folder; Linux installs the CLI to your PATH — the macOS quarantine flag is cleared automatically.</p>
+              <p className="text-gray-500 text-xs mt-3">Detects your OS and CPU and verifies the checksum. macOS mounts the native `.dmg` and installs `JobHunter.app` to your Applications folder; Linux installs the CLI to your PATH — the macOS quarantine flag is cleared automatically.</p>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">Windows (PowerShell)</div>

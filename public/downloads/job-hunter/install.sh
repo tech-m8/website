@@ -106,15 +106,29 @@ if [ "$os" = "darwin" ]; then
   mount_out="$(hdiutil attach -nobrowse -readonly -mountroot "$tmp" "$tmp/$archive" 2>&1)" \
     || err "could not mount $archive: $mount_out"
 
-  # hdiutil prints "<dev>\t<image-path>\t<mount-point>\t..." on stdout. Pick the
-  # last column whose path starts with /Volumes/.
-  mount_point="$(printf '%s\n' "$mount_out" | awk -F'\t' '/\/Volumes\// {print $NF; exit}')"
+  # hdiutil emits lines like:
+  #   /dev/disk5s1            Apple_HFS                          <mount-point>
+  # Older macOS versions always mount under /Volumes/; newer ones honor
+  # -mountroot and mount under the requested dir (e.g. $tmp). Either way, the
+  # mount point is the last whitespace-separated column on a line whose final
+  # field starts with '/'. Pick the first such line.
+  mount_point="$(printf '%s\n' "$mount_out" | awk '{
+    for (i = NF; i >= 1; i--) if ($i ~ /^\//) { print $i; next }
+  }' | head -1)"
   [ -n "$mount_point" ] || err "could not determine mount point from hdiutil output: $mount_out"
-  [ -d "$mount_point/JobHunter.app" ] || err "mounted image did not contain JobHunter.app"
+
+  # Tauri names the bundle with the productName from tauri.conf.json
+  # ("Job Hunter" — note the space). Accept either that or the legacy
+  # SwiftUI name (no space) so an old .dmg still installs cleanly.
+  app_in_dmg=""
+  for candidate in "Job Hunter.app" "JobHunter.app"; do
+    if [ -d "$mount_point/$candidate" ]; then app_in_dmg="$candidate"; break; fi
+  done
+  [ -n "$app_in_dmg" ] || err "mounted image did not contain Job Hunter.app or JobHunter.app (mount=$mount_point)"
 
   # strip quarantine off the whole bundle so the unsigned app launches cleanly.
   if command -v xattr >/dev/null 2>&1; then
-    xattr -dr com.apple.quarantine "$mount_point/JobHunter.app" 2>/dev/null || true
+    xattr -dr com.apple.quarantine "$mount_point/$app_in_dmg" 2>/dev/null || true
   fi
 
   if [ -n "${APP_DIR:-}" ]; then
@@ -126,12 +140,19 @@ if [ "$os" = "darwin" ]; then
   fi
   mkdir -p "$APP_DIR"
 
+  # The .app we install is always `JobHunter.app` (no space) on disk — a
+  # stable path that the rest of the system (Spotlight, Dock, uninstall.sh)
+  # can rely on, regardless of the productName-with-space in the .dmg.
+  install_app="$APP_DIR/JobHunter.app"
+
   # replace any prior install so we never merge stale files into the bundle.
-  rm -rf "$APP_DIR/JobHunter.app"
+  rm -rf "$install_app"
   # -R preserves the bundle's symlinks/dirs (Contents/Resources/etc).
-  cp -R "$mount_point/JobHunter.app" "$APP_DIR/JobHunter.app"
+  cp -R "$mount_point/$app_in_dmg" "$install_app"
+  # Detach BEFORE the trap tears down $tmp — otherwise the trap's `rm -rf`
+  # races the kernel and prints "Resource busy" / "Read-only file system".
   hdiutil detach "$mount_point" >/dev/null 2>&1 || true
-  info "installed to $APP_DIR/JobHunter.app"
+  info "installed to $install_app"
 
   cat <<EOF
 

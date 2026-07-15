@@ -109,12 +109,14 @@ if [ "$os" = "darwin" ]; then
   # hdiutil emits lines like:
   #   /dev/disk5s1            Apple_HFS                          <mount-point>
   # Older macOS versions always mount under /Volumes/; newer ones honor
-  # -mountroot and mount under the requested dir (e.g. $tmp). Either way, the
-  # mount point is the last whitespace-separated column on a line whose final
-  # field starts with '/'. Pick the first such line.
-  mount_point="$(printf '%s\n' "$mount_out" | awk '{
-    for (i = NF; i >= 1; i--) if ($i ~ /^\//) { print $i; next }
-  }' | head -1)"
+  # -mountroot and mount under the requested dir (e.g. $tmp). The mount point
+  # can contain spaces ("Job Hunter") so we can't just awk-split on
+  # whitespace — use a regex that captures the rest of the line after the
+  # device node. Anything under /dev/ is excluded; the mount-point is the
+  # first such path we find.
+  mount_point="$(printf '%s\n' "$mount_out" \
+    | sed -nE 's|^/dev/[[:print:]]+[[:space:]]+[[:graph:]]+[[:space:]]+(/[^[:space:]].*)$|\1|p' \
+    | head -1)"
   [ -n "$mount_point" ] || err "could not determine mount point from hdiutil output: $mount_out"
 
   # Tauri names the bundle with the productName from tauri.conf.json

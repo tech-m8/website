@@ -235,7 +235,7 @@ export default function DroidM8Page() {
                   No Gatekeeper warning: a <code className="px-1 py-0.5 rounded bg-white/10 text-violet-100">curl</code> download isn’t quarantined the way a browser download is, so the app — though not signed with an Apple Developer ID — launches without the “Apple could not verify…” block.
                 </p>
                 <p className="text-gray-500 text-xs leading-relaxed mt-2">
-                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="https://dl.tech-m8.solutions/droidm8/droidm8_checksums.txt" className="underline hover:text-violet-200">checksums.txt</a>
+                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href={`https://dl.tech-m8.solutions/droidm8/droidm8_${droidm8LatestVersion}_checksums.txt`} className="underline hover:text-violet-200">checksums.txt</a>
                 </p>
               </div>
             </div>

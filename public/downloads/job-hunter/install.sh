@@ -21,7 +21,7 @@
 
 set -eu
 
-BASE_URL="${BASE_URL:-https://dl.tech-m8.solutions/job-hunter}"
+BASE_URL="${BASE_URL:-https://tech-m8.solutions/downloads/job-hunter}"
 VERSION="${VERSION:-latest}"
 
 err() { echo "install: $*" >&2; exit 1; }
@@ -65,10 +65,10 @@ if [ "$VERSION" = "latest" ]; then
   fi
 fi
 
-# macOS ships one universal .app bundle (arm64+amd64) as a zip; Linux ships a
-# per-arch CLI tarball.
+# macOS ships a per-arch .dmg produced by `cargo tauri build` (release.sh).
+# Linux ships a per-arch CLI tarball.
 if [ "$os" = "darwin" ]; then
-  archive="JobHunter_${VERSION}_macos_universal.zip"
+  archive="JobHunter_${VERSION}_macos_${arch}.dmg"
 else
   archive="job-hunter_${VERSION}_${os}_${arch}.tar.gz"
 fi
@@ -97,13 +97,24 @@ info "checksum ok"
 
 if [ "$os" = "darwin" ]; then
   # --- macOS: install the JobHunter.app bundle -----------------------------
-  command -v unzip >/dev/null 2>&1 || err "need unzip to install the macOS app"
-  unzip -q "$tmp/$archive" -d "$tmp/extract"
-  [ -d "$tmp/extract/JobHunter.app" ] || err "archive did not contain JobHunter.app"
+  # Mount the .dmg, copy the .app out, then detach. Tauri's `.dmg` is built on
+  # the same macOS host, so the bundled .app matches the host arch the user
+  # picked via `uname -m`.
+  command -v hdiutil >/dev/null 2>&1 || err "need hdiutil to install the macOS app"
+
+  # -nobrowse: don't show in Finder sidebar; -readonly: safety.
+  mount_out="$(hdiutil attach -nobrowse -readonly -mountroot "$tmp" "$tmp/$archive" 2>&1)" \
+    || err "could not mount $archive: $mount_out"
+
+  # hdiutil prints "<dev>\t<image-path>\t<mount-point>\t..." on stdout. Pick the
+  # last column whose path starts with /Volumes/.
+  mount_point="$(printf '%s\n' "$mount_out" | awk -F'\t' '/\/Volumes\// {print $NF; exit}')"
+  [ -n "$mount_point" ] || err "could not determine mount point from hdiutil output: $mount_out"
+  [ -d "$mount_point/JobHunter.app" ] || err "mounted image did not contain JobHunter.app"
 
   # strip quarantine off the whole bundle so the unsigned app launches cleanly.
   if command -v xattr >/dev/null 2>&1; then
-    xattr -dr com.apple.quarantine "$tmp/extract/JobHunter.app" 2>/dev/null || true
+    xattr -dr com.apple.quarantine "$mount_point/JobHunter.app" 2>/dev/null || true
   fi
 
   if [ -n "${APP_DIR:-}" ]; then
@@ -117,7 +128,9 @@ if [ "$os" = "darwin" ]; then
 
   # replace any prior install so we never merge stale files into the bundle.
   rm -rf "$APP_DIR/JobHunter.app"
-  mv "$tmp/extract/JobHunter.app" "$APP_DIR/JobHunter.app"
+  # -R preserves the bundle's symlinks/dirs (Contents/Resources/etc).
+  cp -R "$mount_point/JobHunter.app" "$APP_DIR/JobHunter.app"
+  hdiutil detach "$mount_point" >/dev/null 2>&1 || true
   info "installed to $APP_DIR/JobHunter.app"
 
   cat <<EOF

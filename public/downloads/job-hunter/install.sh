@@ -21,7 +21,7 @@
 
 set -eu
 
-BASE_URL="${BASE_URL:-https://tech-m8.solutions/downloads/job-hunter}"
+BASE_URL="${BASE_URL:-https://dl.tech-m8.solutions/job-hunter}"
 VERSION="${VERSION:-latest}"
 
 err() { echo "install: $*" >&2; exit 1; }

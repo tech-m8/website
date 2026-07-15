@@ -13,6 +13,8 @@ export default function sitemap() {
     { path: '/products', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/products/square-frame', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/products/droidm8', priority: 0.9, changeFrequency: 'monthly' },
+    { path: '/products/droidm8/changelog', priority: 0.6, changeFrequency: 'weekly' },
+    { path: '/products/droidm8/privacy', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/products/job-hunter', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/products/job-hunter/changelog', priority: 0.6, changeFrequency: 'weekly' },
     { path: '/products/square-frame/privacy', priority: 0.3, changeFrequency: 'yearly' },

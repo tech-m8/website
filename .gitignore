@@ -54,3 +54,4 @@ public/downloads/**/*.exe
 public/downloads/**/*.sha256
 public/downloads/**/*_checksums.txt
 public/downloads/job-hunter/VERSION
+public/downloads/droidm8/VERSION

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CopyCommand from '@/components/CopyCommand';
 import JsonLd from '@/components/JsonLd';
+import { droidm8Changelog, droidm8LatestVersion } from '@/lib/droidm8-changelog';
 
 export const metadata = {
   title: 'DroidM8 — Bridge Android & Mac | TechM8',
@@ -119,8 +120,8 @@ const downloads = [
     platform: 'Android',
     name: 'DroidM8 APK',
     desc: 'Install on Android 9+ phones. Sideload via the APK. Signed release build — if you installed an earlier test build, uninstall it first (different signature).',
-    href: 'https://dl.tech-m8.solutions/droidm8.apk',
-    filename: 'droidm8.apk',
+    href: 'https://dl.tech-m8.solutions/droidm8/droidm8-android.apk',
+    filename: 'droidm8-android.apk',
     icon: (
       <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
         <path d="M17.523 15.341a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m-11.046 0a1.04 1.04 0 110-2.08 1.04 1.04 0 010 2.08m11.42-6.122l2.076-3.595a.42.42 0 00-.726-.42l-2.1 3.638A12.94 12.94 0 0012 7.5c-1.844 0-3.587.387-5.147 1.082L4.753 4.944a.42.42 0 00-.726.42l2.076 3.595C2.474 11.054 0 14.27 0 17.998h24c0-3.728-2.473-6.944-6.103-8.78" />
@@ -130,6 +131,7 @@ const downloads = [
 ];
 
 const MAC_INSTALL_CMD = 'curl -fsSL https://tech-m8.solutions/downloads/droidm8/install.sh | sh';
+const MAC_UNINSTALL_CMD = 'curl -fsSL https://tech-m8.solutions/downloads/droidm8/uninstall.sh | sh';
 
 export default function DroidM8Page() {
   return (
@@ -152,9 +154,18 @@ export default function DroidM8Page() {
             </svg>
             All products
           </Link>
-          <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium px-4 py-2 rounded-full mb-8">
-            <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
-            Android + macOS
+          <div className="flex items-center justify-center gap-3 flex-wrap mb-8">
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium px-4 py-2 rounded-full">
+              <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
+              Android + macOS
+            </div>
+            <Link
+              href="/products/droidm8/changelog"
+              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white text-xs font-medium px-4 py-2 rounded-full transition-all"
+            >
+              {droidm8LatestVersion}
+              <span className="text-gray-500">· What&rsquo;s new</span>
+            </Link>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">DroidM8</span>
@@ -224,7 +235,7 @@ export default function DroidM8Page() {
                   No Gatekeeper warning: a <code className="px-1 py-0.5 rounded bg-white/10 text-violet-100">curl</code> download isn’t quarantined the way a browser download is, so the app — though not signed with an Apple Developer ID — launches without the “Apple could not verify…” block.
                 </p>
                 <p className="text-gray-500 text-xs leading-relaxed mt-2">
-                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="https://dl.tech-m8.solutions/DroidM8-mac.tar.gz.sha256" className="underline hover:text-violet-200">SHA-256 checksum</a>
+                  Inspect first: <a href="/downloads/droidm8/install.sh" className="underline hover:text-violet-200">install.sh</a> · <a href="https://dl.tech-m8.solutions/droidm8/droidm8_checksums.txt" className="underline hover:text-violet-200">checksums.txt</a>
                 </p>
               </div>
             </div>
@@ -252,8 +263,62 @@ export default function DroidM8Page() {
                   </svg>
                   Download
                 </a>
+                <p className="text-gray-500 text-xs leading-relaxed mt-3">
+                  <a href={`https://dl.tech-m8.solutions/droidm8/droidm8_${droidm8LatestVersion}_checksums.txt`} className="underline hover:text-violet-200">SHA-256 checksum</a>
+                </p>
               </div>
             ))}
+          </div>
+          <details className="group rounded-2xl border border-white/10 bg-white/5 px-6 py-4 max-w-md mx-auto mt-6">
+            <summary className="flex items-center justify-between gap-3 cursor-pointer list-none text-sm text-gray-300 hover:text-white">
+              <span className="font-medium">Uninstall Droid M 8</span>
+              <svg className="w-4 h-4 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="mt-4">
+              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS</div>
+              <CopyCommand text={MAC_UNINSTALL_CMD} />
+              <p className="text-gray-500 text-xs mt-3">
+                Removes the Droid M 8.app bundle from your Applications folder. Your pairing PIN, clipboard history, and rules live with the app and are removed with it. On Android, uninstall via <span className="text-gray-400">Settings → Apps</span>.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      {/* Latest release */}
+      <section id="whats-new" className="relative pb-20 md:pb-24 scroll-mt-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-8">
+            <div className="flex items-center justify-between gap-3 flex-wrap mb-5">
+              <div className="flex items-center gap-3 flex-wrap">
+                <h2 className="text-xl md:text-2xl font-bold text-white">What&rsquo;s new</h2>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-500/20 border border-violet-500/40 text-violet-200">
+                  {droidm8Changelog[0].version}
+                </span>
+                <span className="text-xs text-gray-500">{droidm8Changelog[0].date}</span>
+              </div>
+              <Link
+                href="/products/droidm8/changelog"
+                className="inline-flex items-center gap-1 text-violet-300 hover:text-violet-200 text-sm font-medium"
+              >
+                Full changelog
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <ul className="space-y-2.5">
+              {droidm8Changelog[0].changes.map((c, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-gray-300 text-sm leading-relaxed">
+                  <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

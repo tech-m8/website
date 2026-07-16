@@ -81,9 +81,23 @@ try {
     $lnk.TargetPath = $exe
     $lnk.WorkingDirectory = $dest
     $lnk.Description = 'Job Hunter'
+    # Point the icon explicitly at the exe. JobHunter.exe embeds the app icon,
+    # so index 0 is correct; being explicit (rather than the default empty
+    # ",0") makes Windows re-read it instead of trusting a stale cache entry.
+    $lnk.IconLocation = "$exe,0"
     $lnk.Save()
   }
   Write-Host "==> added Start Menu and Desktop shortcuts"
+
+  # Reinstalling over the same path leaves Windows showing the OLD (or blank)
+  # cached shortcut icon. Tell the shell associations changed and rebuild the
+  # per-user icon cache so the new icon shows without a sign-out.
+  Add-Type -Namespace Win -Name Shell -MemberDefinition @'
+[System.Runtime.InteropServices.DllImport("shell32.dll")]
+public static extern void SHChangeNotify(int e, uint f, System.IntPtr a, System.IntPtr b);
+'@ -ErrorAction SilentlyContinue
+  try { [Win.Shell]::SHChangeNotify(0x08000000, 0, [IntPtr]::Zero, [IntPtr]::Zero) } catch {}
+  Start-Process -FilePath "$env:SystemRoot\System32\ie4uinit.exe" -ArgumentList '-show' -WindowStyle Hidden -ErrorAction SilentlyContinue
 
   # --- register uninstall (Settings > Apps / Control Panel) ---------------
   # Drop a self-contained uninstaller beside the app; it re-launches itself from

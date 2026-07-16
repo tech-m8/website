@@ -19,9 +19,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* Logo — single SVG source of truth (public/logo.svg). Inlined so
-            Next.js' static export ships it without an extra request, and so
-            the navbar matches the favicon / app icon everywhere. */}
+        {/* Logo — single SVG source of truth (public/briefcase.svg). Inlined
+            so Next.js' static export ships it without an extra request, and
+            so the navbar matches the favicon + the desktop app icon. */}
         <Link href="/" className="flex items-center gap-2.5">
           <svg
             className="w-8 h-8"
@@ -29,11 +29,8 @@ export default function Navbar() {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
-            <rect width="32" height="32" rx="6" fill="#7c3aed" />
-            <rect x="5"  y="5"  width="9" height="9" rx="2" fill="#ffffff" />
-            <rect x="18" y="5"  width="9" height="9" rx="2" fill="#a78bfa" />
-            <rect x="5"  y="18" width="9" height="9" rx="2" fill="#a78bfa" />
-            <rect x="18" y="18" width="9" height="9" rx="2" fill="#ffffff" />
+            <rect width="32" height="32" rx="7" fill="#7c3aed" />
+            <path d="M 13.5 9 Q 12.75 9 12.75 9.75 L 12.75 12.5 L 7.5 12.5 Q 6 12.5 6 14 L 6 22.5 Q 6 24 7.5 24 L 14.25 24 L 14.25 25 Q 14.25 25.6 14.85 25.6 L 17.15 25.6 Q 17.75 25.6 17.75 25 L 17.75 24 L 24.5 24 Q 26 24 26 22.5 L 26 14 Q 26 12.5 24.5 12.5 L 19.25 12.5 L 19.25 9.75 Q 19.25 9 18.5 9 Z" fill="#ffffff" />
           </svg>
           <span className="font-bold text-white text-lg">TechM8</span>
         </Link>

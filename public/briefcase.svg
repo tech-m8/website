@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!--
+    Brand mark: violet rounded tile + white briefcase glyph.
+    Single source of truth for every brand icon (favicon, navbar, .icns
+    app icon, macOS menu-bar template). Tile is the violet TechM8 brand
+    colour (#7c3aed, matching the rest of the website palette). The
+    briefcase references the legacy SwiftUI `macos/Sources/JobHunter/`
+    icon (a stylized SF Symbol briefcase.fill) so the desktop app
+    keeps its existing visual identity while the rest of the brand
+    unifies around this glyph.
+  -->
+  <rect width="32" height="32" rx="7" fill="#7c3aed"/>
+
+  <!-- Handle + body + latch as a single white shape. Drawing them as
+       one path ensures the handle visibly attaches to the body and the
+       latch sits flush with the bottom edge, with no antialiasing seams
+       between separate elements. -->
+  <path d="
+    M 13.5 9
+    Q 12.75 9 12.75 9.75
+    L 12.75 12.5
+    L 7.5 12.5
+    Q 6 12.5 6 14
+    L 6 22.5
+    Q 6 24 7.5 24
+    L 14.25 24
+    L 14.25 25
+    Q 14.25 25.6 14.85 25.6
+    L 17.15 25.6
+    Q 17.75 25.6 17.75 25
+    L 17.75 24
+    L 24.5 24
+    Q 26 24 26 22.5
+    L 26 14
+    Q 26 12.5 24.5 12.5
+    L 19.25 12.5
+    L 19.25 9.75
+    Q 19.25 9 18.5 9
+    Z
+  " fill="#ffffff"/>
+</svg>

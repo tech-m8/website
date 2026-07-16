@@ -156,11 +156,24 @@ if [ "$os" = "darwin" ]; then
   hdiutil detach "$mount_point" >/dev/null 2>&1 || true
   info "installed to $install_app"
 
+  # Launch the freshly installed app. `open` is the macOS-native way (it
+  # honours LSOpenURLsWithRole, lets the Dock see the bundle, and starts
+  # the app in the user's session). A failure here (no display, sandbox,
+  # running in a CI environment without a logged-in WindowServer) is
+  # *not* an install failure — the install succeeded, the user can
+  # launch from Launchpad / Spotlight. Print a warning and exit 0.
+  if command -v open >/dev/null 2>&1; then
+    if open "$install_app" >/dev/null 2>&1; then
+      info "launched JobHunter"
+    else
+      echo "install: could not launch the app automatically (open returned non-zero)." >&2
+      echo "         Open it manually:  open \"$install_app\"" >&2
+    fi
+  fi
+
   cat <<EOF
 
-JobHunter $VERSION installed. Next:
-
-  open "$APP_DIR/JobHunter.app"     # or launch it from Launchpad / Spotlight
+JobHunter $VERSION installed.
 
 Paste your license key on the activation screen to unlock features.
 Need one? Email masnun@gmail.com (subject: Job Hunter license).

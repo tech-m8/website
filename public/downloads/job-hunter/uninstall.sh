@@ -1,15 +1,14 @@
 #!/bin/sh
 #
-# uninstall.sh — one-line uninstaller for job-hunter (macOS + Linux).
+# uninstall.sh — one-line uninstaller for job-hunter (macOS).
 #
 #   curl -fsSL https://tech-m8.solutions/downloads/job-hunter/uninstall.sh | sh
 #
-# Removes the installed app/CLI and its transient caches. Your data and license
+# Removes the installed app and its transient caches. Your data and license
 # in ~/.job-hunter are KEPT by default so a reinstall stays activated — pass
 # --purge to delete them too.
 #
 #   macOS  -> removes JobHunter.app from /Applications and ~/Applications
-#   Linux  -> removes the job-hunter CLI from your PATH
 #
 # It first stops any running background daemon so nothing keeps holding
 # 127.0.0.1:7777 or the files being deleted.
@@ -22,7 +21,6 @@
 #   JOB_HUNTER_HOME     data directory        (default: ~/.job-hunter)
 #   JOB_HUNTER_LICENSE  license file          (default: $JOB_HUNTER_HOME/license.key)
 #   APP_DIR             extra macOS app dir to check (beyond the defaults)
-#   BIN_DIR             extra Linux CLI dir to check  (beyond the defaults)
 
 set -eu
 
@@ -53,8 +51,8 @@ rm_path() {
 }
 
 # --- stop a running daemon so it isn't holding files or the port -----------
-# The macOS app spawns `job-hunter daemon` as a child process (no launchd), and
-# the Linux CLI may be running in a terminal. Best-effort; ignore if not found.
+# The macOS app spawns `job-hunter daemon` as a child process (no launchd).
+# Best-effort; ignore if not found.
 if command -v pkill >/dev/null 2>&1; then
   pkill -f 'job-hunter daemon' 2>/dev/null && info "stopped running daemon" || true
 fi
@@ -67,16 +65,6 @@ if [ "$os" = "Darwin" ]; then
   [ -n "${APP_DIR:-}" ] && rm_path "$APP_DIR/JobHunter.app"
   # transient headless-Chrome scraping profiles, orphaned on a crash/kill.
   rm_path "$HOME/Library/Caches/job-hunter"
-fi
-
-# --- Linux: the CLI binary on the PATH -------------------------------------
-if [ "$os" = "Linux" ]; then
-  rm_path /usr/local/bin/job-hunter
-  rm_path "$HOME/.local/bin/job-hunter"
-  [ -n "${BIN_DIR:-}" ] && rm_path "$BIN_DIR/job-hunter"
-  # transient headless-Chrome scraping profiles (Go's os.UserCacheDir()),
-  # orphaned on a crash/kill. Honors XDG_CACHE_HOME like the app does.
-  rm_path "${XDG_CACHE_HOME:-$HOME/.cache}/job-hunter"
 fi
 
 # --- data directory: kept unless --purge -----------------------------------

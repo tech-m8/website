@@ -17,7 +17,7 @@ const products = [
     name: 'Job Hunter',
     tagline: 'An AI job-hunting agent on your own machine.',
     desc: 'Researches a job post and company, scores your honest fit, and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs or your own cloud API keys.',
-    badge: 'macOS · Linux · Windows',
+    badge: 'macOS · Windows',
   },
   {
     slug: 'droidm8',

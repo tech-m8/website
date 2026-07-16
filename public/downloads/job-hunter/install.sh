@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# install.sh — one-line installer for job-hunter (macOS + Linux).
+# install.sh — one-line installer for job-hunter (macOS).
 #
 #   curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh
 #
@@ -8,7 +8,6 @@
 # against the published checksums file (fails closed on mismatch), and installs.
 #
 #   macOS  -> the native JobHunter.app bundle into /Applications
-#   Linux  -> the job-hunter CLI binary onto your PATH
 #
 # Either way it strips the Gatekeeper quarantine flag so the unsigned artifact
 # runs without the "cannot be opened" prompt.
@@ -16,7 +15,6 @@
 # Overridable via env:
 #   BASE_URL   where to fetch artifacts from (default: the tech-m8 site)
 #   VERSION    which version to install      (default: latest)
-#   BIN_DIR    Linux install directory       (default: /usr/local/bin or ~/.local/bin)
 #   APP_DIR    macOS install directory       (default: /Applications or ~/Applications)
 
 set -eu
@@ -31,8 +29,7 @@ info() { echo "==> $*"; }
 os="$(uname -s)"
 case "$os" in
   Darwin) os="darwin" ;;
-  Linux)  os="linux"  ;;
-  *) err "unsupported OS '$os' — see $BASE_URL for manual downloads" ;;
+  *) err "unsupported OS '$os' — see $BASE_URL for manual downloads (macOS only)" ;;
 esac
 
 arch="$(uname -m)"
@@ -66,12 +63,7 @@ if [ "$VERSION" = "latest" ]; then
 fi
 
 # macOS ships a per-arch .dmg produced by `cargo tauri build` (release.sh).
-# Linux ships a per-arch CLI tarball.
-if [ "$os" = "darwin" ]; then
-  archive="JobHunter_${VERSION}_macos_${arch}.dmg"
-else
-  archive="job-hunter_${VERSION}_${os}_${arch}.tar.gz"
-fi
+archive="JobHunter_${VERSION}_macos_${arch}.dmg"
 checksums="job-hunter_${VERSION}_checksums.txt"
 
 info "installing job-hunter $VERSION ($os/$arch)"
@@ -178,39 +170,4 @@ JobHunter $VERSION installed.
 Paste your license key on the activation screen to unlock features.
 Need one? Email masnun@gmail.com (subject: Job Hunter license).
 EOF
-  exit 0
 fi
-
-# --- Linux: install the CLI binary -----------------------------------------
-tar -xzf "$tmp/$archive" -C "$tmp"
-[ -f "$tmp/job-hunter" ] || err "archive did not contain a job-hunter binary"
-chmod +x "$tmp/job-hunter"
-
-# --- choose install dir ----------------------------------------------------
-if [ -n "${BIN_DIR:-}" ]; then
-  :
-elif [ -w /usr/local/bin ] 2>/dev/null; then
-  BIN_DIR="/usr/local/bin"
-else
-  BIN_DIR="$HOME/.local/bin"
-fi
-mkdir -p "$BIN_DIR"
-
-mv "$tmp/job-hunter" "$BIN_DIR/job-hunter"
-info "installed to $BIN_DIR/job-hunter"
-
-case ":$PATH:" in
-  *":$BIN_DIR:"*) ;;
-  *) echo "    note: $BIN_DIR is not on your PATH — add it to your shell profile" ;;
-esac
-
-# --- next steps ------------------------------------------------------------
-cat <<EOF
-
-job-hunter $VERSION installed. Next:
-
-  job-hunter           # open the web app at http://127.0.0.1:7777
-
-Paste your license key on the activation screen to unlock features.
-Need one? Email masnun@gmail.com (subject: Job Hunter license).
-EOF

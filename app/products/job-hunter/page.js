@@ -19,7 +19,7 @@ const softwareSchema = {
   '@type': 'SoftwareApplication',
   name: 'Job Hunter',
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'macOS, Linux, Windows',
+  operatingSystem: 'macOS, Windows',
   url: 'https://tech-m8.solutions/products/job-hunter',
   description:
     'Local-first AI job-hunting agent that scores your honest fit and writes a tailored cover letter, email, or CV in your voice — every claim fact-checked. Runs on your own AI CLIs or cloud API keys.',
@@ -58,11 +58,11 @@ const features = [
   },
 ];
 
-const installCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
+const installCmdMac = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/install.sh | sh`;
 const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/install.ps1 | iex`;
 
-// Uninstall (macOS & Linux). Keeps ~/.job-hunter by default; --purge wipes it.
-const uninstallCmdUnix = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/uninstall.sh | sh`;
+// Uninstall (macOS). Keeps ~/.job-hunter by default; --purge wipes it.
+const uninstallCmdMac = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/uninstall.sh | sh`;
 
 // Beta tester license key — valid through August 30, 2026.
 const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0zMFQwODo1MDozOC44ODg3NTFaIn0.9raqLqOEf5Cqjkz02GgcMWU0EJPiqwtO0u1BUt_p-rzfGFpLNHdrGq-wXutdckifq7NHMK1VizTYTs2Z2_TUDQ`;
@@ -91,7 +91,7 @@ export default function JobHunterPage() {
           <div className="flex items-center justify-center gap-3 flex-wrap mb-8">
             <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-medium px-4 py-2 rounded-full">
               <span className="w-2 h-2 bg-violet-400 rounded-full animate-pulse" />
-              macOS · Linux · Windows · Local-first
+              macOS · Windows · Local-first
             </div>
             <Link
               href="/products/job-hunter/changelog"
@@ -132,9 +132,9 @@ export default function JobHunterPage() {
           {/* Primary install — one-liners */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
-              <CopyCommand text={installCmdUnix} />
-              <p className="text-gray-500 text-xs mt-3">Detects your OS and CPU and verifies the checksum. macOS mounts the native `.dmg` and installs `JobHunter.app` to your Applications folder; Linux installs the CLI to your PATH — the macOS quarantine flag is cleared automatically.</p>
+              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS</div>
+              <CopyCommand text={installCmdMac} />
+              <p className="text-gray-500 text-xs mt-3">Detects your CPU and verifies the checksum. Mounts the native `.dmg` and installs `JobHunter.app` to your Applications folder — the macOS quarantine flag is cleared automatically.</p>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">Windows (PowerShell)</div>
@@ -173,8 +173,8 @@ export default function JobHunterPage() {
               </svg>
             </summary>
             <div className="mt-4">
-              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS &amp; Linux</div>
-              <CopyCommand text={uninstallCmdUnix} />
+              <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS</div>
+              <CopyCommand text={uninstallCmdMac} />
               <p className="text-gray-500 text-xs mt-3">
                 Removes the app and its background engine. Your profile, job history, and license in <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">~/.job-hunter</code> are kept, so reinstalling stays activated — end the command with <code className="px-1.5 py-0.5 rounded bg-white/10 text-violet-200">| sh -s -- --purge</code> to delete those too. On Windows, remove <span className="text-gray-400">Job Hunter</span>{' '}from Settings &rarr; Installed apps.
               </p>

@@ -152,3 +152,11 @@ Write-Host ""
 Write-Host "Windows may warn that the app is unsigned (SmartScreen) - choose 'More info' > 'Run anyway'."
 Write-Host "Paste your license key on the activation screen to unlock features."
 Write-Host "Need one? Email masnun@gmail.com (subject: Job Hunter license)."
+
+# Launch the freshly-installed app (detached; the single-instance guard just
+# focuses an already-running copy).
+if (Test-Path $exe) {
+  Write-Host ""
+  Write-Host "==> starting Job Hunter…"
+  Start-Process -FilePath $exe -WorkingDirectory $dest
+}

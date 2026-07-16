@@ -8,7 +8,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'TechM8',
   url: 'https://tech-m8.solutions',
-  logo: 'https://tech-m8.solutions/favicon.svg',
+  logo: 'https://tech-m8.solutions/logo.svg',
   description:
     'TechM8 is a software studio building custom digital products and its own local-first, privacy-focused apps — Job Hunter, DroidM8, and Square Frame.',
   founder: {
@@ -45,7 +45,7 @@ export const metadata = {
     description: 'Custom digital products, plus local-first privacy-focused apps: Job Hunter, DroidM8, and Square Frame.',
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: '/logo.svg',
   },
 };
 

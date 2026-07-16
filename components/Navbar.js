@@ -19,14 +19,22 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* Logo */}
+        {/* Logo — single SVG source of truth (public/logo.svg). Inlined so
+            Next.js' static export ships it without an extra request, and so
+            the navbar matches the favicon / app icon everywhere. */}
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg grid grid-cols-2 gap-0.5 p-1.5">
-            <div className="bg-white/90 rounded-sm" />
-            <div className="bg-white/40 rounded-sm" />
-            <div className="bg-white/40 rounded-sm" />
-            <div className="bg-white/90 rounded-sm" />
-          </div>
+          <svg
+            className="w-8 h-8"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <rect width="32" height="32" rx="6" fill="#7c3aed" />
+            <rect x="5"  y="5"  width="9" height="9" rx="2" fill="#ffffff" />
+            <rect x="18" y="5"  width="9" height="9" rx="2" fill="#a78bfa" />
+            <rect x="5"  y="18" width="9" height="9" rx="2" fill="#a78bfa" />
+            <rect x="18" y="18" width="9" height="9" rx="2" fill="#ffffff" />
+          </svg>
           <span className="font-bold text-white text-lg">TechM8</span>
         </Link>
 

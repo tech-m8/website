@@ -4,10 +4,10 @@
 #
 #   curl -fsSL https://tech-m8.solutions/downloads/droidm8/uninstall.sh | sh
 #
-# Removes the installed Droid M 8.app bundle from /Applications (or
+# Removes the installed Droid M8.app bundle from /Applications (or
 # ~/Applications) and stops any running instance so files aren't held open.
 # Your pairing PIN, clipboard history, and rule/suppress lists live in the
-# Droid M 8 app's sandbox (or in adb-side DataStore) and are removed with
+# Droid M8 app's sandbox (or in adb-side DataStore) and are removed with
 # the app — pass --purge to also remove the macOS Read-Only Notification
 # Center DB cache used for Mac → Phone forwarding.
 #
@@ -34,11 +34,11 @@ done
 info() { echo "==> $*"; }
 note() { echo "    $*"; }
 
-APP_BUNDLE="Droid M 8.app"
+APP_BUNDLE="Droid M8.app"
 
 # --- stop a running instance so files aren't held open ----------------------
 if command -v pkill >/dev/null 2>&1; then
-  pkill -f "Droid M 8.app/Contents/MacOS/" 2>/dev/null && info "stopped running Droid M 8" || true
+  pkill -f "Droid M8.app/Contents/MacOS/" 2>/dev/null && info "stopped running Droid M8" || true
 fi
 
 removed=0
@@ -54,7 +54,7 @@ rm_path() {
 # --- macOS only -------------------------------------------------------------
 os="$(uname -s)"
 if [ "$os" != "Darwin" ]; then
-  echo "uninstall: Droid M 8 ships for macOS only — on Android, uninstall via Settings → Apps." >&2
+  echo "uninstall: Droid M8 ships for macOS only — on Android, uninstall via Settings → Apps." >&2
   exit 1
 fi
 
@@ -74,7 +74,7 @@ fi
 
 echo
 if [ "$removed" = "0" ]; then
-  info "nothing to remove — Droid M 8 does not appear to be installed"
+  info "nothing to remove — Droid M8 does not appear to be installed"
 else
-  info "Droid M 8 uninstalled"
+  info "Droid M8 uninstalled"
 fi

@@ -275,7 +275,7 @@ export default function DroidM8Page() {
           </div>
           <details className="group rounded-2xl border border-white/10 bg-white/5 px-6 py-4 max-w-md mx-auto mt-6">
             <summary className="flex items-center justify-between gap-3 cursor-pointer list-none text-sm text-gray-300 hover:text-white">
-              <span className="font-medium">Uninstall Droid M 8</span>
+              <span className="font-medium">Uninstall Droid M8</span>
               <svg className="w-4 h-4 text-gray-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -284,7 +284,7 @@ export default function DroidM8Page() {
               <div className="text-xs uppercase tracking-wider text-violet-300 font-semibold mb-3">macOS</div>
               <CopyCommand text={MAC_UNINSTALL_CMD} />
               <p className="text-gray-500 text-xs mt-3">
-                Removes the Droid M 8.app bundle from your Applications folder. Your pairing PIN, clipboard history, and rules live with the app and are removed with it. On Android, uninstall via <span className="text-gray-400">Settings → Apps</span>.
+                Removes the Droid M8.app bundle from your Applications folder. Your pairing PIN, clipboard history, and rules live with the app and are removed with it. On Android, uninstall via <span className="text-gray-400">Settings → Apps</span>.
               </p>
             </div>
           </details>

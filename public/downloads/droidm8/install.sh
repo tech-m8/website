@@ -6,7 +6,7 @@
 #
 # Resolves the latest release from a plain-text VERSION file on the download
 # CDN, downloads the matching archive, verifies its sha256 against the published
-# checksums file (fails closed on mismatch), unpacks the Droid M 8.app bundle
+# checksums file (fails closed on mismatch), unpacks the Droid M8.app bundle
 # into /Applications (or ~/Applications if /Applications isn't writable), and
 # launches it.
 #
@@ -24,14 +24,14 @@ set -eu
 BASE_URL="${BASE_URL:-https://dl.tech-m8.solutions/droidm8}"
 VERSION="${VERSION:-latest}"
 
-APP_BUNDLE="Droid M 8.app"
+APP_BUNDLE="Droid M8.app"
 ARCHIVE_BASE="DroidM8-mac"
 
 err() { echo "install: $*" >&2; exit 1; }
 info() { echo "==> $*"; }
 
 # --- macOS only ------------------------------------------------------------
-[ "$(uname -s)" = "Darwin" ] || err "Droid M 8 for Mac runs on macOS only — for Android install from the Play Store: https://play.google.com/store/apps/details?id=techm8.droidm8"
+[ "$(uname -s)" = "Darwin" ] || err "Droid M8 for Mac runs on macOS only — for Android install from the Play Store: https://play.google.com/store/apps/details?id=techm8.droidm8"
 
 # --- pick a downloader -----------------------------------------------------
 if command -v curl >/dev/null 2>&1; then
@@ -59,7 +59,7 @@ fi
 archive="${ARCHIVE_BASE}_${VERSION}.tar.gz"
 checksums="droidm8_${VERSION}_checksums.txt"
 
-info "installing Droid M 8 $VERSION"
+info "installing Droid M8 $VERSION"
 
 # --- download archive + checksums -----------------------------------------
 dl "$BASE_URL/$archive"   "$tmp/$archive"   || err "download failed: $BASE_URL/$archive"
@@ -110,11 +110,11 @@ open "$APP_DIR/$APP_BUNDLE" || err "installed, but could not auto-launch — ope
 
 cat <<EOF
 
-Droid M 8 is installed and launching. It lives in your menu bar.
+Droid M8 is installed and launching. It lives in your menu bar.
 
 Next:
-  1. Click the Droid M 8 menu-bar icon → note the 6-digit pairing PIN.
-  2. On your Android phone (Droid M 8 app → Settings → Devices), enter the PIN.
+  1. Click the Droid M8 menu-bar icon → note the 6-digit pairing PIN.
+  2. On your Android phone (Droid M8 app → Settings → Devices), enter the PIN.
   3. Grant Full Disk Access on the Mac for Mac → Phone notification mirroring.
 
 Setup guide: https://tech-m8.solutions/products/droidm8#tutorial

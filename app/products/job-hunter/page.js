@@ -64,8 +64,8 @@ const installCmdWin = `irm https://tech-m8.solutions/downloads/job-hunter/instal
 // Uninstall (macOS). Keeps ~/.job-hunter by default; --purge wipes it.
 const uninstallCmdMac = `curl -fsSL https://tech-m8.solutions/downloads/job-hunter/uninstall.sh | sh`;
 
-// Beta tester license key — valid through August 30, 2026.
-const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0zMFQwODo1MDozOC44ODg3NTFaIn0.9raqLqOEf5Cqjkz02GgcMWU0EJPiqwtO0u1BUt_p-rzfGFpLNHdrGq-wXutdckifq7NHMK1VizTYTs2Z2_TUDQ`;
+// Beta tester license key — valid through August 31, 2026.
+const betaLicenseKey = `jh.eyJuYW1lIjoiQmV0YSBUZXN0ZXIiLCJleHBpcmVzX2F0IjoiMjAyNi0wOC0zMVQxODoyNTowMS44NzI2NjlaIn0.reFH8dwh7Kxg2KHi60NfIwfD5wjdP9dAiaGrjsGWWB5dom-2kab8DLQeLrMWUvWWmXi3Tqv6PYZfE0dpe0ccDg`;
 
 export default function JobHunterPage() {
   return (
@@ -154,7 +154,7 @@ export default function JobHunterPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <h3 className="text-emerald-200 font-bold text-base">Free beta tester key</h3>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-200">Expires August 30, 2026</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-200">Expires August 31, 2026</span>
                 </div>
                 <p className="text-emerald-100/90 text-sm leading-relaxed mb-3">
                   Try every feature free during the beta. Paste this key into the app when prompted for a license.

@@ -118,7 +118,7 @@ const youtubeSteps = [
   },
   {
     title: 'Recommended: restrict the key',
-    body: 'On the key, set API restrictions to “YouTube Data API v3”, and Application restrictions to Android apps (package com.masnun.musicshare). This makes a leaked key useless elsewhere.',
+    body: 'On the key, set API restrictions to “YouTube Data API v3”, and Application restrictions to Android apps (package techm8.music_share). This makes a leaked key useless elsewhere.',
   },
   {
     title: 'Paste it into MusicShare',

@@ -58,6 +58,7 @@ const features = [
 const scopes = [
   { name: 'users.profile:write', where: 'User Token Scopes', why: 'updates your status' },
   { name: 'chat:write', where: 'Bot Token Scopes', why: 'posts to a channel' },
+  { name: 'channels:read', where: 'Bot Token Scopes', why: 'lists your channels in the picker' },
 ];
 
 const steps = [
@@ -70,8 +71,8 @@ const steps = [
     body: 'Go to api.slack.com/apps → Create New App → From scratch. Name it MusicShare and pick your workspace. It’s your own private app — nobody else sees it and it isn’t submitted to any directory.',
   },
   {
-    title: 'Add the two permissions',
-    body: 'In your app, open OAuth & Permissions → Scopes. There are two separate lists — add one scope to each. Placement matters: users.profile:write must go under User Token Scopes, because setting your status acts as you, not a bot. Only doing one action? Add just that scope.',
+    title: 'Add the permissions',
+    body: 'In your app, open OAuth & Permissions → Scopes. Add the scopes below to the lists shown. Placement matters: users.profile:write must go under User Token Scopes, because setting your status acts as you, not a bot. Only updating status? You just need that one. channels:read is optional — add it only if you want to pick your channel from a list instead of pasting an ID.',
     scopes: true,
   },
   {
@@ -83,8 +84,8 @@ const steps = [
     body: 'In MusicShare, paste your token(s) and tap Verify & save. The app calls Slack to confirm each token and shows the connected user and workspace. Only tokens that pass are stored — encrypted — on your device.',
   },
   {
-    title: 'For channel posts: invite the bot & set the channel',
-    body: 'Skip this if you only want status updates. Otherwise, in your target Slack channel type /invite @MusicShare, then grab the channel ID (click the channel name → it’s at the bottom, like C0123ABCD) and paste it into MusicShare.',
+    title: 'For channel posts: invite the bot & pick the channel',
+    body: 'Skip this if you only want status updates. Otherwise, in your target Slack channel type /invite @MusicShare. Then in MusicShare, if you added the channels:read scope, tap Refresh and pick the channel from the list — it shows only channels the bot can post to. No scope? Paste the channel ID instead (click the channel name → it’s at the bottom, like C0123ABCD).',
   },
   {
     title: 'Press play',

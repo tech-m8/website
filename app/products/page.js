@@ -33,6 +33,13 @@ const products = [
     desc: 'Pad photos to a clean white square, add a caption with your camera details, and export square JPEGs — all on-device.',
     badge: 'Android',
   },
+  {
+    slug: 'music-share',
+    name: 'MusicShare',
+    tagline: 'Your music as your Slack status.',
+    desc: 'Reads your currently-playing track and updates your Slack status or posts to a channel on every song change. Tokens stay encrypted on-device — no backend.',
+    badge: 'Android + Slack',
+  },
 ];
 
 export default function ProductsPage() {

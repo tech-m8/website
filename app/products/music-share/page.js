@@ -59,6 +59,7 @@ const scopes = [
   { name: 'users.profile:write', where: 'User Token Scopes', why: 'updates your status' },
   { name: 'chat:write', where: 'Bot Token Scopes', why: 'posts to a channel' },
   { name: 'channels:read', where: 'Bot Token Scopes', why: 'lists your channels in the picker' },
+  { name: 'files:write', where: 'Bot & User Token Scopes', why: 'posts album art inline (optional)' },
 ];
 
 const steps = [
@@ -72,7 +73,7 @@ const steps = [
   },
   {
     title: 'Add the permissions',
-    body: 'In your app, open OAuth & Permissions → Scopes. Add the scopes below to the lists shown. Placement matters: users.profile:write must go under User Token Scopes, because setting your status acts as you, not a bot. Only updating status? You just need that one. channels:read is optional — add it only if you want to pick your channel from a list instead of pasting an ID.',
+    body: 'In your app, open OAuth & Permissions → Scopes. Add the scopes below to the lists shown. Placement matters: users.profile:write must go under User Token Scopes, because setting your status acts as you, not a bot. Only updating status? You just need that one. channels:read (channel picker) and files:write (inline album art) are optional. files:write goes on whichever token actually posts — the user token if posts appear as you, the bot token for the fallback — so add it to both if unsure. Adding scopes later means you must Reinstall.',
     scopes: true,
   },
   {
